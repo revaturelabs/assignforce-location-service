@@ -44,7 +44,6 @@ public class Location {
 
 	public Location() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Location(int id, String name, String city, String state, Boolean isActive, Set<Building> buildings) {

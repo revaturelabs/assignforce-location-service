@@ -36,8 +36,8 @@ public class LocationController {
 	public ResponseEntity<Location> getById(@PathVariable("id") int id) {
 		Optional<Location> a = locationService.findById(id);
 		if (!a.isPresent())
-			return new ResponseEntity<Location>(HttpStatus.NOT_FOUND);
-		return new ResponseEntity<Location>(a.get(), HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(a.get(), HttpStatus.OK);
 	}
 
 	// create
@@ -45,8 +45,8 @@ public class LocationController {
 	public ResponseEntity<Location> add(@RequestBody Location a) {
 		a = locationService.create(a);
 		if (a == null)
-			return new ResponseEntity<Location>(HttpStatus.BAD_REQUEST);
-		return new ResponseEntity<Location>(a, HttpStatus.CREATED);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(a, HttpStatus.CREATED);
 	}
 
 	// update
@@ -54,15 +54,15 @@ public class LocationController {
 	public ResponseEntity<Location> update(@RequestBody Location a) {
 		a = locationService.update(a);
 		if (a == null)
-			return new ResponseEntity<Location>(HttpStatus.BAD_REQUEST);
-		return new ResponseEntity<Location>(a, HttpStatus.CREATED);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(a, HttpStatus.CREATED);
 	}
 
 	// delete
 	@DeleteMapping(value = "{id}")
 	public ResponseEntity<Location> delete(@PathVariable("id") int id) {
 		locationService.delete(id);
-		return new ResponseEntity<Location>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }
