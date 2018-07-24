@@ -47,8 +47,6 @@ public class LocationControllerTest {
 	}
 	
 	@Autowired
-	private LocationService locationService;
-	@Autowired
 	private LocationRepository locationRepository;
 	@Autowired
 	private LocationController locationController;
