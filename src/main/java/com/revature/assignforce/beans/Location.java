@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
@@ -23,18 +25,25 @@ public class Location {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Location_ID")
 	@SequenceGenerator(name = "Location_ID", sequenceName = "Location_ID_Seq", allocationSize = 1)
-	@Column
+	@Column(name = "location_id")
 	private int id;
 
+        @NotNull
+        @Size(min = 1, max = 128)
 	@Column(name = "LOCATION_NAME")
 	private String name;
 
+        @NotNull
+        @Size(min = 1, max = 128)
 	@Column
 	private String city;
 
+        @NotNull
+        @Size(min = 1, max = 128)
 	@Column
 	private String state;
 
+        @NotNull
 	@Column(name = "IS_ACTIVE")
 	private Boolean isActive;
 
