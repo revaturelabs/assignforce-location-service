@@ -1,6 +1,6 @@
 package com.revature.assignforce.beans;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
@@ -24,14 +25,15 @@ public class Unavailability {
 	@Column(name = "UNAVAILABLE_ID")
 	private int id;
         
-        
+        @NotNull
 	@Column(name = "START_DATE")
-	private Date startDate;
+	private LocalDate startDate;
 
-        
+        @NotNull
 	@Column(name = "END_DATE")
-	private Date endDate;
+	private LocalDate endDate;
 
+        @NotNull
 	@Column(name = "DESCRIPTION")
 	private String description;
 
@@ -39,7 +41,7 @@ public class Unavailability {
 		super();
 	}
 
-	public Unavailability(int id, Date startDate, Date endDate, String description) {
+	public Unavailability(int id, LocalDate startDate, LocalDate endDate, String description) {
 		super();
 		this.id = id;
 		this.startDate = startDate;
@@ -55,19 +57,19 @@ public class Unavailability {
 		this.id = id;
 	}
 
-	public Date getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 
