@@ -8,6 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.revature.assignforce.beans.Room;
 import com.revature.assignforce.repos.RoomRepository;
 
+/**
+ * @author Shannon
+ * 
+ */
+
 public class RoomService {
 	
 	@Autowired

@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
 import com.revature.assignforce.beans.Unavailability;
 import com.revature.assignforce.repos.UnavailabilityRepository;
 
+/**
+ * 
+ * @author Shannon
+ *
+ */
 
 @Service
 public class UnavailabilityService {
