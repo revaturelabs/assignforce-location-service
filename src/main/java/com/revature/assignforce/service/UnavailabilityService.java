@@ -1,15 +1,20 @@
 package com.revature.assignforce.service;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.revature.assignforce.beans.Unavailability;
+import com.revature.assignforce.repos.UnavailabilityRepository;
 
 
 @Service
 public class UnavailabilityService {
 	
-	/* Will uncomment when a repository is created and Unavailability bean is moved to this project
-	 * 
 	@Autowired
-	private UnavailabilityRepo unavailRepo;
+	private UnavailabilityRepository unavailRepo;
 	
 	public List<Unavailability> getAll() {
 		return unavailRepo.findAll();
@@ -30,5 +35,4 @@ public class UnavailabilityService {
 	public void delete(int id) {
 		unavailRepo.deleteById(id);
 	}
-	 */
 }
