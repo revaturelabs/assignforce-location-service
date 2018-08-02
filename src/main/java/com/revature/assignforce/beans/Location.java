@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -53,6 +54,16 @@ public class Location {
 
 	public Location() {
 		super();
+	}
+
+        public Location(String name, String city, String state, Boolean isActive, Set<Building> buildings) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.city = city;
+		this.state = state;
+		this.isActive = isActive;
+		this.buildings = buildings;
 	}
 
 	public Location(int id, String name, String city, String state, Boolean isActive, Set<Building> buildings) {
