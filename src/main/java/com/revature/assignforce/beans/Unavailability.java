@@ -1,5 +1,6 @@
 package com.revature.assignforce.beans;
 
+import com.revature.assignforce.validators.IsValidInterval;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "UNAVAILABILITY")
+@IsValidInterval(startInterval="startDate", endInterval="endDate", inclusive=true)
 public class Unavailability {
 
 	@Id
@@ -33,6 +35,7 @@ public class Unavailability {
 	@Column(name = "END_DATE")
 	private LocalDate endDate;
 
+        // it makes sense for a description to be empty but not for it to be null
         @NotNull
 	@Column(name = "DESCRIPTION")
 	private String description;

@@ -1,8 +1,16 @@
 package com.revature.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashSet;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,16 +19,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
-
-import java.util.Set;
-
 import com.revature.assignforce.beans.Building;
 import com.revature.assignforce.beans.Location;
 import com.revature.assignforce.beans.Room;
+
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -48,6 +51,13 @@ public class LocationTest {
             assertEquals(3, constraintViolations.size());
         }
         
+	
+	@Test
+	public void locationTest1() {
+		Location l1 = new Location();
+		assertNotNull(l1);
+	}
+	
 	@Test
 	public void locationTest2() {
 		Room r1 = new Room(1, "Class A");

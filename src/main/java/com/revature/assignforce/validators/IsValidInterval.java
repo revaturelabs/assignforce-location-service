@@ -2,7 +2,6 @@ package com.revature.assignforce.validators;
 
 
 import java.lang.annotation.ElementType;
-import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.TYPE;
 import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
@@ -42,8 +41,8 @@ public @interface IsValidInterval
     boolean inclusive() default false;
     
     // whether to return true or false if one of the bounds is null
-    boolean ifNull() default true;
+    boolean ifNull() default false;
     
     // message if validation fails
-    String message() default "{Interval invalid}";   
+    String message() default "{Interval is invalid}";   
 }
