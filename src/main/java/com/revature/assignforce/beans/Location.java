@@ -14,8 +14,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.springframework.stereotype.Component;
 
+/**
+ * A location where Revature can train batches.
+ */
 @Component
 @Entity
 @Table
@@ -26,15 +32,22 @@ public class Location {
 	@Column
 	private int id;
 
+        @NotNull
+        @Size(min = 1, max = 128)
 	@Column(name = "LOCATION_NAME")
 	private String name;
 
+        @NotNull
+        @Size(min = 1, max = 128)
 	@Column
 	private String city;
 
+        @NotNull
+        @Size(min = 1, max = 128)
 	@Column
 	private String state;
 
+        @NotNull
 	@Column(name = "IS_ACTIVE")
 	private Boolean isActive;
 
