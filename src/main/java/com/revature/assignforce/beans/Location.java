@@ -20,7 +20,8 @@ import javax.validation.constraints.Size;
 import org.springframework.stereotype.Component;
 
 /**
- * A location where Revature can train batches.
+ * A location where Revature can train batches. A location encompasses a
+ * collection of buildings.
  */
 @Component
 @Entity
