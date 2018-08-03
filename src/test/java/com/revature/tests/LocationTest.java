@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -22,6 +23,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.revature.assignforce.beans.Building;
 import com.revature.assignforce.beans.Location;
 import com.revature.assignforce.beans.Room;
+import com.revature.assignforce.beans.Unavailability;
 
 
 
@@ -60,8 +62,9 @@ public class LocationTest {
 	
 	@Test
 	public void locationTest2() {
-		Room r1 = new Room(1, "Class A");
-		Room r2 = new Room(2, "Class B");
+		Set<Unavailability> testSet = new TreeSet<Unavailability>();
+		Room r1 = new Room(1, "Class A", testSet);
+		Room r2 = new Room(2, "Class B", testSet);
 		HashSet<Room> roomSet = new HashSet<Room>();
 		roomSet.add(r1);
 		roomSet.add(r2);
@@ -114,8 +117,9 @@ public class LocationTest {
 	@Test
 	public void getSetBuildingsTest() {
 		Location l1 = new Location();
-		Room r1 = new Room(1, "Class A");
-		Room r2 = new Room(2, "Class B");
+		Set<Unavailability> testSet = new TreeSet<Unavailability>();
+		Room r1 = new Room(1, "Class A", testSet);
+		Room r2 = new Room(2, "Class B", testSet);
 		HashSet<Room> roomSet = new HashSet<Room>();
 		roomSet.add(r1);
 		roomSet.add(r2);
