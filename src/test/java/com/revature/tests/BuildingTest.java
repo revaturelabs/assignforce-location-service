@@ -97,7 +97,10 @@ public class BuildingTest {
 		assertTrue(b1.getRooms().size() == 3);
 	}
 
-	// Asserts that there is a validation constraint on b1 because its buildingName is null
+	/**
+	 * @author JavierCastano
+	 * Asserts that there is a validation constraint on b1 because its buildingName is null.
+	 */
 	
 	@Test
 	public void buildingNameNotNull() {
@@ -114,8 +117,11 @@ public class BuildingTest {
 	  	 	  );
 	}
 	
-	// Asserts that there is a validation constraint on b1 because its buildingName is an empty string
-	// Which is less then the Size annotation minimum of 1 character
+	/**
+	 * @author JavierCastano
+	 * Asserts that there is a validation constraint on b1 because its buildingName is an empty string
+	 * which is less then the Size annotation minimum of 1 character.
+	 */
 	
 	@Test
 	public void BuildingNameSizeGreaterThanEmptyString() {
@@ -131,6 +137,12 @@ public class BuildingTest {
 		  	 	    constraintViolations.iterator().next().getMessage()
 		  	 	  );
 	}
+	
+	/**
+	 * 	@author JavierCastano
+	 * 	Asserts that there is a validation constraint that occurs for b1 because it is a string with a size
+	 *  greater than 128. The size 129 is greater then the maximum size declared for roomName in the Size annotation.
+	 */
 	
 	@Test
 	public void BuildingSizeLessThan129() {

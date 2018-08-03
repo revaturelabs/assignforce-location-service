@@ -72,7 +72,10 @@ public class RoomTest {
 		assertTrue(r1.getRoomName().equals("BlueRoom"));
 	}
 
-	// Asserts that there is a validation constraint that occurs for r1 because its roomName is null
+	/**
+	 *  @author JavierCastano
+	 *  Asserts that there is a validation constraint that occurs for r1 because its roomName is null.
+	 */
 	
 	@Test
 	public void roomNameNotNull() {
@@ -89,10 +92,12 @@ public class RoomTest {
 	 	      );
 	}
 	
-	/* 	
-	 	Asserts that there is a validation constraint that occurs for r1 because its roomName is an empty string
-	 	Which is not greater than the minimum declared in the Size annotation which is 1 character
-	*/
+	/**
+	 * 
+	 * @author JavierCastano
+	 * Asserts that there is a validation constraint that occurs for r1 because its roomName is an empty string
+	 * which is not greater than the minimum declared in the Size annotation which is 1 character.
+	 */
 	
 	@Test
 	public void roomNameGreaterThanEmptyString() {
@@ -110,8 +115,9 @@ public class RoomTest {
 	 	      );
 	}
 	
-	/*
-	 *  Asserts that there is a validation constraint that occurs for r1 because it is a string with a size
+	/**
+	 * 	@author JavierCastano
+	 * 	Asserts that there is a validation constraint that occurs for r1 because it is a string with a size
 	 *  greater than 128. The size 129 is greater then the maximum size declared for roomName in the Size annotation.
 	 */
 	
