@@ -1,8 +1,16 @@
 package com.revature.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashSet;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +23,8 @@ import com.revature.assignforce.beans.Building;
 import com.revature.assignforce.beans.Location;
 import com.revature.assignforce.beans.Room;
 
+
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class LocationTest {
@@ -26,6 +36,21 @@ public class LocationTest {
 		return new Location();
 		}
 	}
+        
+        // Location name, city, and state must contain at least one character
+        @Test
+        public void locationFieldsCannotBeEmpty()
+        {
+            ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+            Validator validator = factory.getValidator();
+            
+            Location location = new Location("", "", "", false, new HashSet<>());
+            
+            Set<ConstraintViolation<Location>> constraintViolations = 
+                                                validator.validate(location);
+            assertEquals(3, constraintViolations.size());
+        }
+        
 	
 	@Test
 	public void locationTest1() {

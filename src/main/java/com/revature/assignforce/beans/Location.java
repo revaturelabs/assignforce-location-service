@@ -29,7 +29,7 @@ public class Location {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Location_ID")
 	@SequenceGenerator(name = "Location_ID", sequenceName = "Location_ID_Seq", allocationSize = 1)
-	@Column
+	@Column(name = "location_id")
 	private int id;
 
         @NotNull
@@ -57,6 +57,16 @@ public class Location {
 
 	public Location() {
 		super();
+	}
+
+        public Location(String name, String city, String state, Boolean isActive, Set<Building> buildings) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.city = city;
+		this.state = state;
+		this.isActive = isActive;
+		this.buildings = buildings;
 	}
 
 	public Location(int id, String name, String city, String state, Boolean isActive, Set<Building> buildings) {
