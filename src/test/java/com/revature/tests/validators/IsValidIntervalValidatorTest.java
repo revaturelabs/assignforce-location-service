@@ -2,19 +2,25 @@ package com.revature.tests.validators;
 
 import com.revature.assignforce.validators.IsValidInterval;
 import com.revature.assignforce.validators.IsValidIntervalValidator;
+
 import java.lang.annotation.Annotation;
 import java.time.LocalDateTime;
+
 import javax.validation.Payload;
+
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 /**
- *
- * @author Hayden
+ * Tests the IsValidInterval annotation and IsValidIntervalValidator.
+ * @author Hayden Fields
  */
 public class IsValidIntervalValidatorTest
 {
-    // class for testing purposes
+    /**
+     * Class for testing purposes.
+     */
     public static class TestEntity
     {
         private LocalDateTime startDateIdentifier;
@@ -29,9 +35,9 @@ public class IsValidIntervalValidatorTest
     }
     
     @Test
-    /*
-    If start date is before end date should return true
-    */
+    /**
+     * If start date is before end date should return true.
+     */
     public void trueWhenIntervalValid()
     {
         IsValidIntervalValidator test = new IsValidIntervalValidator();
@@ -50,9 +56,9 @@ public class IsValidIntervalValidatorTest
     }
     
     @Test
-    /*
-    If end date is before start date should return false
-    */
+    /**
+     * If end date is before start date should return false.
+     */
     public void falseWhenIntervalInvalid()
     {
         IsValidIntervalValidator test = new IsValidIntervalValidator();
@@ -71,10 +77,10 @@ public class IsValidIntervalValidatorTest
     }
     
     @Test
-    /*
-    if fields are not found then that is a programatic error
-    should throw an exception so that the programmer can fix their code
-    */
+    /**
+     * If fields are not found then that is a programming error,
+     * should throw an exception so that the programmer can fix their code.
+     */
     public void specifiedFieldsNotFound()
     {
         IsValidIntervalValidator test = new IsValidIntervalValidator();
@@ -99,6 +105,16 @@ public class IsValidIntervalValidatorTest
         }
     }
     
+    /**
+     * Creates an annotation to test the validator.
+     * @param message The error message.
+     * @param startInterval Start of the interval.
+     * @param endInterval End of the interval.
+     * @param inclusive Whether start and end can be the same value.
+     * @param ifNull Returned if either bound is null.
+     * @return Returns an implemented and instantiated IsValidInterval
+     *         annotation.
+     */
     public IsValidInterval getInstanceOfIsValidIntervalAnnotation(
                                                    final String message,
                                                    final String startInterval,
@@ -156,6 +172,7 @@ public class IsValidIntervalValidatorTest
                 return new Class[] {};
             }
         };
+        
         return annotation;
     }
 }

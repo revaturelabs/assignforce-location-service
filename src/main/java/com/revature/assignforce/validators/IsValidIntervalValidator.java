@@ -5,17 +5,25 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 /**
- *
- * @author Hayden
+ * Validator that is used along with IsValidInterval annotation to validate
+ * that the start of an interval is before the end of an interval.
+ * @author Hayden Fields
+ * @see IsValidInterval
  */
 public class IsValidIntervalValidator implements ConstraintValidator<IsValidInterval, Object>
 {
-    // name of variables so we can reflect out the vlaues in the object
+    // start and end of the interval
     private String start;
     private String end;
+    // if true then <= is used for validation else <
     private boolean inclusive;
+    // is the value that is returned if either bound is null
     private boolean ifNull;
     
+    /**
+     * Extract the parameters from the annotation.
+     * @param constraintAnnotation an instance of the annotation 
+     */
     @Override
     public void initialize(IsValidInterval constraintAnnotation) 
     {
@@ -25,8 +33,17 @@ public class IsValidIntervalValidator implements ConstraintValidator<IsValidInte
         this.ifNull = constraintAnnotation.ifNull();
     }    
 
+    /**
+     * Determines If the object contains the specified valid interval.
+     * @param obj An instance of the class that the annotation was bound to.
+     * @param context Currently not explicitly used.
+     * @return True if the start of the interval is before the end of the 
+     * interval if either bound is null returns ifNull.
+     * @throws IllegalArgumentException If either of the field names specified
+     * are not on obj.
+     */
     @Override
-    public boolean isValid(Object obj, ConstraintValidatorContext context)
+    public boolean isValid(Object obj, ConstraintValidatorContext context) throws IllegalArgumentException
     {
         // variables for start and end of the interval
         Comparable startObj = null;
@@ -46,6 +63,7 @@ public class IsValidIntervalValidator implements ConstraintValidator<IsValidInte
                 boolean accessibility = field.isAccessible();
                 field.setAccessible(true);
 
+                // reflect out the fields in the object
                 if (field.getName().equals(start))
                 {
                     startObj = (Comparable)field.get(obj);
@@ -83,7 +101,7 @@ public class IsValidIntervalValidator implements ConstraintValidator<IsValidInte
         }
         
         // both objects exist but one of them is null behavior is specified by 
-        // the annotation since should be caught by not null exceptions
+        // the annotation since could be caught by a not null constraint
         if (startObj == null || endObj == null) return ifNull;
         
         if (inclusive)

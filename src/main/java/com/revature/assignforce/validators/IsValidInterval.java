@@ -1,6 +1,5 @@
 package com.revature.assignforce.validators;
 
-
 import java.lang.annotation.ElementType;
 import static java.lang.annotation.ElementType.TYPE;
 import java.lang.annotation.Repeatable;
@@ -13,8 +12,10 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 /**
- *
- * @author Hayden
+ * @author Hayden Fields
+ * Annotation to be applied to a class, is repeatable if class must validate 
+ * multiple intervals and is validated by IsValidIntervalValidator.
+ * @see IsValidIntervalValidator
  */
 @Repeatable(IsValidInterval.List.class)
 @Target({TYPE})
@@ -22,27 +23,53 @@ import javax.validation.Payload;
 @Constraint(validatedBy = IsValidIntervalValidator.class)
 public @interface IsValidInterval
 {
-    // list for repeated annotations
+    /**
+     * List for repeated annotations.
+     */
     @Retention(RetentionPolicy.RUNTIME)
     @Target({ElementType.TYPE})
     @interface List 
     {
-       IsValidInterval[] value();
+        /**
+         * @return An array of the interval constraints.
+         */
+        IsValidInterval[] value();
     }
     
+    /**
+     * https://docs.jboss.org/hibernate/validator/5.0/reference/en-US/html/validator-customconstraints.html
+     * @return Setting groupings for this constraint annotation.
+     */
     Class<?>[] groups() default {};
+
+    /**
+     * https://docs.jboss.org/hibernate/validator/5.0/reference/en-US/html/validator-customconstraints.html
+     * @return Setting custom payloads for this constraint annotation.
+     */
     Class<? extends Payload>[] payload() default {};
     
-    // identifiers of start and end of the interval
+    /**
+     * @return The field name of the start of the interval.
+     */
     String startInterval() default "startInterval";
+    /**
+     * @return The field name of the end of the interval.
+     */
     String endInterval() default "endInterval";
     
-    // wether the end of the interval is inclusive or exclusive
+    /**
+     * @return True if it is valid that the start bound and end bound can be 
+     * the same value and false otherwise.
+     */
     boolean inclusive() default false;
-    
-    // whether to return true or false if one of the bounds is null
+
+    /**
+     * @return Result of validation if one of the bounds are null.
+     */
     boolean ifNull() default false;
-    
-    // message if validation fails
+
+    /**
+     * @return The message if the object is not valid.
+     */
     String message() default "{Interval is invalid}";   
 }
