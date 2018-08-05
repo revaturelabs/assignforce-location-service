@@ -17,11 +17,11 @@ import javax.validation.Payload;
  * multiple intervals and is validated by IsValidIntervalValidator.
  * @see IsValidIntervalValidator
  */
-@Repeatable(IsValidInterval.List.class)
+@Repeatable(IntervalHolder.List.class)
 @Target({TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = IsValidIntervalValidator.class)
-public @interface IsValidInterval
+@Constraint(validatedBy = IntervalHolderValidator.class)
+public @interface IntervalHolder
 {
     /**
      * List for repeated annotations.
@@ -33,7 +33,7 @@ public @interface IsValidInterval
         /**
          * @return An array of the interval constraints.
          */
-        IsValidInterval[] value();
+        IntervalHolder[] value();
     }
     
     /**

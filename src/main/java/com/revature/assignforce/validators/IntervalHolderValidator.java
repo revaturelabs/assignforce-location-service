@@ -10,7 +10,7 @@ import javax.validation.ConstraintValidatorContext;
  * @author Hayden Fields
  * @see IsValidInterval
  */
-public class IsValidIntervalValidator implements ConstraintValidator<IsValidInterval, Object>
+public class IntervalHolderValidator implements ConstraintValidator<IntervalHolder, Object>
 {
     // start and end of the interval
     private String start;
@@ -25,7 +25,7 @@ public class IsValidIntervalValidator implements ConstraintValidator<IsValidInte
      * @param constraintAnnotation an instance of the annotation 
      */
     @Override
-    public void initialize(IsValidInterval constraintAnnotation) 
+    public void initialize(IntervalHolder constraintAnnotation) 
     {
         this.start = constraintAnnotation.startInterval();
         this.end = constraintAnnotation.endInterval();

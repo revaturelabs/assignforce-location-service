@@ -1,7 +1,7 @@
 package com.revature.tests.validators;
 
-import com.revature.assignforce.validators.IsValidInterval;
-import com.revature.assignforce.validators.IsValidIntervalValidator;
+import com.revature.assignforce.validators.IntervalHolder;
+import com.revature.assignforce.validators.IntervalHolderValidator;
 
 import java.lang.annotation.Annotation;
 import java.time.LocalDateTime;
@@ -13,10 +13,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Tests the IsValidInterval annotation and IsValidIntervalValidator.
+ * Tests the IntervalHolder annotation and IntervalHolderValidator.
  * @author Hayden Fields
  */
-public class IsValidIntervalValidatorTest
+public class IntervalHolderValidatorTest
 {
     /**
      * Class for testing purposes.
@@ -40,8 +40,8 @@ public class IsValidIntervalValidatorTest
      */
     public void trueWhenIntervalValid()
     {
-        IsValidIntervalValidator test = new IsValidIntervalValidator();
-        test.initialize(getInstanceOfIsValidIntervalAnnotation(
+        IntervalHolderValidator test = new IntervalHolderValidator();
+        test.initialize(getInstanceOfIntervalHolderAnnotation(
                                                         "irrelevant message",
                                                         "startDateIdentifier",
                                                         "endDateIdentifier",
@@ -61,8 +61,8 @@ public class IsValidIntervalValidatorTest
      */
     public void falseWhenIntervalInvalid()
     {
-        IsValidIntervalValidator test = new IsValidIntervalValidator();
-        test.initialize(getInstanceOfIsValidIntervalAnnotation(
+        IntervalHolderValidator test = new IntervalHolderValidator();
+        test.initialize(getInstanceOfIntervalHolderAnnotation(
                                                         "irrelevant message",
                                                         "startDateIdentifier",
                                                         "endDateIdentifier",
@@ -83,8 +83,8 @@ public class IsValidIntervalValidatorTest
      */
     public void specifiedFieldsNotFound()
     {
-        IsValidIntervalValidator test = new IsValidIntervalValidator();
-        test.initialize(getInstanceOfIsValidIntervalAnnotation(
+        IntervalHolderValidator test = new IntervalHolderValidator();
+        test.initialize(getInstanceOfIntervalHolderAnnotation(
                                                         "irrelevant message",
                                                         "fieldNotInClass",
                                                         "otherFieldNotInClass",
@@ -112,17 +112,17 @@ public class IsValidIntervalValidatorTest
      * @param endInterval End of the interval.
      * @param inclusive Whether start and end can be the same value.
      * @param ifNull Returned if either bound is null.
-     * @return Returns an implemented and instantiated IsValidInterval
+     * @return Returns an implemented and instantiated IntervalHolder
      *         annotation.
      */
-    public IsValidInterval getInstanceOfIsValidIntervalAnnotation(
+    public IntervalHolder getInstanceOfIntervalHolderAnnotation(
                                                    final String message,
                                                    final String startInterval,
                                                    final String endInterval,
                                                    final boolean inclusive,
                                                    final boolean ifNull)
     {
-        IsValidInterval annotation = new IsValidInterval()
+        IntervalHolder annotation = new IntervalHolder()
         {
             @Override
             public String startInterval()
@@ -157,7 +157,7 @@ public class IsValidIntervalValidatorTest
             @Override
             public Class<? extends Annotation> annotationType()
             {
-                return IsValidInterval.class;
+                return IntervalHolder.class;
             }
             
             @Override
