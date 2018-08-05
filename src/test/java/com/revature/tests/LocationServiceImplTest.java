@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +21,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.revature.assignforce.beans.Building;
 import com.revature.assignforce.beans.Location;
 import com.revature.assignforce.beans.Room;
+import com.revature.assignforce.beans.Unavailability;
 import com.revature.assignforce.repos.LocationRepository;
 import com.revature.assignforce.service.LocationService;
 import com.revature.assignforce.service.LocationServiceImpl;
@@ -46,8 +49,9 @@ public class LocationServiceImplTest {
 	
 	@Test
 	public void getAllTest() {
-		Room r1 = new Room(1, "Class A");
-		Room r2 = new Room(2, "Class B");
+		Set<Unavailability> testSet = new TreeSet<Unavailability>();
+		Room r1 = new Room(1, "Class A", testSet);
+		Room r2 = new Room(2, "Class B", testSet);
 		HashSet<Room> roomSet = new HashSet<Room>();
 		roomSet.add(r1);
 		roomSet.add(r2);
@@ -70,8 +74,9 @@ public class LocationServiceImplTest {
 	
 	@Test
 	public void findByIdTest() {
-		Room r1 = new Room(1, "Class A");
-		Room r2 = new Room(2, "Class B");
+		Set<Unavailability> testSet = new TreeSet<Unavailability>();
+		Room r1 = new Room(1, "Class A", testSet);
+		Room r2 = new Room(2, "Class B", testSet);
 		HashSet<Room> roomSet = new HashSet<Room>();
 		roomSet.add(r1);
 		roomSet.add(r2);
@@ -91,8 +96,9 @@ public class LocationServiceImplTest {
 	
 	@Test
 	public void updateTest() {
-		Room r1 = new Room(1, "Class A");
-		Room r2 = new Room(2, "Class B");
+		Set<Unavailability> testSet = new TreeSet<Unavailability>();
+		Room r1 = new Room(1, "Class A", testSet);
+		Room r2 = new Room(2, "Class B", testSet);
 		HashSet<Room> roomSet = new HashSet<Room>();
 		roomSet.add(r1);
 		roomSet.add(r2);
@@ -112,8 +118,9 @@ public class LocationServiceImplTest {
 	
 	@Test
 	public void createTest() {
-		Room r1 = new Room(1, "Class A");
-		Room r2 = new Room(2, "Class B");
+		Set<Unavailability> testSet = new TreeSet<Unavailability>();
+		Room r1 = new Room(1, "Class A", testSet);
+		Room r2 = new Room(2, "Class B", testSet);
 		HashSet<Room> roomSet = new HashSet<Room>();
 		roomSet.add(r1);
 		roomSet.add(r2);

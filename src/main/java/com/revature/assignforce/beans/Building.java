@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
@@ -32,6 +34,8 @@ public class Building {
 	private Boolean isActive;
 
 	@Column(name = "BUILDING_NAME")
+	@NotNull(message="buildingName must not be null")
+	@Size(min = 1, max =128, message = "buildingName must be between 1 and 128")
 	private String buildingName;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
@@ -42,13 +46,19 @@ public class Building {
 		super();
 	}
 
-	public Building(int buildingId, Boolean isActive, String buildingName, Set<Room> rooms) {
+	
+
+	public Building(int buildingId, Boolean isActive,
+			@NotNull(message = "buildingName cannot be null") @Size(min = 1, max = 128) String buildingName,
+			Set<Room> rooms) {
 		super();
 		this.buildingId = buildingId;
 		this.isActive = isActive;
 		this.buildingName = buildingName;
 		this.rooms = rooms;
 	}
+
+
 
 	public int getBuildingId() {
 		return buildingId;
