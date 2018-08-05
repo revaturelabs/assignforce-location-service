@@ -1,5 +1,7 @@
 package com.revature.assignforce.beans;
 
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -17,9 +19,16 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 //@Component
 @Entity
 @Table(name = "Buildings")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Building {
 
 	// Building_ID, Building_Name, Location_ID, Unavailability
@@ -36,24 +45,34 @@ public class Building {
 	private String buildingName;
 	
 	@ManyToOne
-	@JoinColumn(name = "LOCATION_ID", nullable = false)
-	private Location locationId;
+	@JoinColumn(name = "BUILDINGS_ID")
+	private Location address;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
-	@JoinColumn
+	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	private Set<Room> rooms;
 
 	public Building() {
 		super();
 	}
+	
+	
 
-	public Building(int buildingId, Boolean isActive, String buildingName, Set<Room> rooms) {
+	public Building(int buildingId, Boolean isActive, String buildingName, Location address, Set<Room> rooms) {
 		super();
 		this.buildingId = buildingId;
 		this.isActive = isActive;
 		this.buildingName = buildingName;
+		this.address = address;
 		this.rooms = rooms;
 	}
+
+
+
+	public Building(int i, boolean b, String string, HashSet<Room> roomSet) {
+		// TODO Auto-generated constructor stub
+	}
+
+
 
 	public int getBuildingId() {
 		return buildingId;
@@ -79,6 +98,14 @@ public class Building {
 		this.buildingName = buildingName;
 	}
 
+	public Location getAddress() {
+		return address;
+	}
+
+	public void setAddress(Location address) {
+		this.address = address;
+	}
+
 	public Set<Room> getRooms() {
 		return rooms;
 	}
@@ -86,4 +113,8 @@ public class Building {
 	public void setRooms(Set<Room> rooms) {
 		this.rooms = rooms;
 	}
+
+	
 }
+
+

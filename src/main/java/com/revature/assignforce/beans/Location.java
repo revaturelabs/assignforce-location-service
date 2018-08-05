@@ -38,8 +38,7 @@ public class Location {
 	@Column(name = "IS_ACTIVE")
 	private Boolean isActive;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Building> buildings;
 
 	public Location() {

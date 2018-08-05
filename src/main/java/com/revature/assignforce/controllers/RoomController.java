@@ -17,30 +17,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.assignforce.beans.Building;
-import com.revature.assignforce.beans.Location;
+import com.revature.assignforce.beans.Room;
 import com.revature.assignforce.service.BuildingService;
-import com.revature.assignforce.service.LocationService;
+import com.revature.assignforce.service.RoomService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/building")
-public class BuildingController {
+@RequestMapping("/room")
+public class RoomController {
 	
 	@Autowired
-	BuildingService buildingService;
+	RoomService roomService;
 
 	// findAll
 	@GetMapping
-	public List<Building> getAll() {
+	public List<Room> getAll() {
 		
 		
-		return buildingService.getAll();
+		return roomService.getAll();
 	}
 
 	// findOne
 	@GetMapping(value = "{id}")
-	public ResponseEntity<Building> getById(@PathVariable("id") int id) {
-		Optional<Building> a = buildingService.findById(id);
+	public ResponseEntity<Room> getById(@PathVariable("id") int id) {
+		Optional<Room> a = roomService.findById(id);
 		if (!a.isPresent())
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		return new ResponseEntity<>(a.get(), HttpStatus.OK);
@@ -48,8 +48,8 @@ public class BuildingController {
 
 	// create
 	@PostMapping
-	public ResponseEntity<Building> add(@RequestBody Building a) {
-		a = buildingService.create(a);
+	public ResponseEntity<Room> add(@RequestBody Room a) {
+		a = roomService.create(a);
 		if (a == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		return new ResponseEntity<>(a, HttpStatus.CREATED);
@@ -57,8 +57,8 @@ public class BuildingController {
 
 	// update
 	@PutMapping
-	public ResponseEntity<Building> update(@RequestBody Building a) {
-		a = buildingService.update(a);
+	public ResponseEntity<Room> update(@RequestBody Room a) {
+		a = roomService.update(a);
 		if (a == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		return new ResponseEntity<>(a, HttpStatus.CREATED);
@@ -66,8 +66,8 @@ public class BuildingController {
 
 	// delete
 	@DeleteMapping(value = "{id}")
-	public ResponseEntity<Building> delete(@PathVariable("id") int id) {
-		buildingService.delete(id);
+	public ResponseEntity<Room> delete(@PathVariable("id") int id) {
+		roomService.delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
