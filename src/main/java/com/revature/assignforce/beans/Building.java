@@ -10,13 +10,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 @Entity
 @Table(name = "Buildings")
 public class Building {
@@ -33,6 +34,10 @@ public class Building {
 
 	@Column(name = "BUILDING_NAME")
 	private String buildingName;
+	
+	@ManyToOne
+	@JoinColumn(name = "LOCATION_ID", nullable = false)
+	private Location locationId;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
 	@JoinColumn

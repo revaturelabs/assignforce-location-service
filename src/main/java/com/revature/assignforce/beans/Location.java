@@ -16,9 +16,9 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 @Entity
-@Table
+@Table(name = "Location")
 public class Location {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Location_ID")
