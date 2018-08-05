@@ -1,6 +1,6 @@
 package com.revature.assignforce.beans;
 
-import com.revature.assignforce.validators.IsValidInterval;
+import com.revature.assignforce.validators.IntervalHolder;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "UNAVAILABILITY")
-@IsValidInterval(startInterval="startDate", endInterval="endDate", inclusive=true)
+@IntervalHolder(startInterval="startDate", endInterval="endDate", inclusive=true)
 public class Unavailability {
 
 	@Id
