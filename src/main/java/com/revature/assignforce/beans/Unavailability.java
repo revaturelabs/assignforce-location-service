@@ -13,8 +13,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Room")
-public class Unavailibility {
+@Table(name = "Unavailability ")
+public class Unavailability {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "buildings")
@@ -36,14 +36,14 @@ public class Unavailibility {
 	private Building building;
 	
 
-	public Unavailibility() {
+
+
+	public Unavailability() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
-	public Unavailibility(int buildingId, String description, LocalDate endDate, LocalDate startDate,
+	public Unavailability(int buildingId, String description, LocalDate endDate, LocalDate startDate,
 			Building building) {
 		super();
 		this.buildingId = buildingId;
@@ -52,8 +52,6 @@ public class Unavailibility {
 		this.startDate = startDate;
 		this.building = building;
 	}
-
-
 
 	public int getBuildingId() {
 		return buildingId;
