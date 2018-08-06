@@ -1,9 +1,11 @@
 package com.revature.assignforce.beans;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,15 +14,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "Unavailability ")
 public class Unavailability {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "buildings")
-	@SequenceGenerator(name = "buildings", sequenceName = "buildings_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Unavailability_ID")
+	@SequenceGenerator(name = "Unavailability_ID", sequenceName = "Unavailability_ID_seq", allocationSize = 1)
 	@Column(name = "UNAVAILABLE_ID")
-	private int buildingId;
+	private int id;
 	
 	@Column(name = "DESCRIPTION")
 	private String description;
@@ -31,11 +35,31 @@ public class Unavailability {
 	@Column(name = "START_DATE")
 	private LocalDate startDate;
 	
-	@ManyToOne
-	@JoinColumn(name = "ROOMS_ID")
-	private Building building;
-	
 
+	@JsonIgnoreProperties
+	@ManyToOne(targetEntity=Room.class,fetch=FetchType.LAZY)
+	@JoinColumn(name = "ROOMS_ID")
+	private Room notroom;
+
+	
+	@Column(name="ROOMS_ID", updatable=false, insertable=false)
+	private Integer room;
+
+
+	
+	
+	
+	
+	
+	public Unavailability(int id, String description, LocalDate endDate, LocalDate startDate,  Integer room) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.endDate = endDate;
+		this.startDate = startDate;
+		//this.notroom = notroom;
+		this.room = room;
+	}
 
 
 	public Unavailability() {
@@ -43,55 +67,71 @@ public class Unavailability {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Unavailability(int buildingId, String description, LocalDate endDate, LocalDate startDate,
-			Building building) {
-		super();
-		this.buildingId = buildingId;
-		this.description = description;
-		this.endDate = endDate;
-		this.startDate = startDate;
-		this.building = building;
+
+	public int getId() {
+		return id;
 	}
 
-	public int getBuildingId() {
-		return buildingId;
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public void setBuildingId(int buildingId) {
-		this.buildingId = buildingId;
-	}
 
 	public String getDescription() {
 		return description;
 	}
 
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 
 	public LocalDate getEndDate() {
 		return endDate;
 	}
 
+
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
+
 
 	public LocalDate getStartDate() {
 		return startDate;
 	}
 
+
 	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-	public Building getBuilding() {
-		return building;
+
+	/*public Room getNotroom() {
+		return notroom;
+	}*/
+
+
+	public void setNotroom(Room room) {
+		this.notroom = room;
 	}
 
-	public void setBuilding(Building building) {
-		this.building = building;
+
+	public Integer getRoom() {
+		return room;
 	}
+
+
+	public void setRoom(Integer room) {
+		this.room = room;
+	}
+
+	
+
+
+
+	
 
 	
 	
