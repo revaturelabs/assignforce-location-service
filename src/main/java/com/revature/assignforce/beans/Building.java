@@ -45,7 +45,7 @@ public class Building {
 	private String buildingName;
 	
 	@ManyToOne
-	@JoinColumn(name = "BUILDINGS_ID")
+	@JoinColumn(name = "LOCATION_ID")
 	private Location address;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
