@@ -85,7 +85,7 @@ public class LocationTest {
 		l1.setIsActive(true);
 		assertTrue(l1.getIsActive());
 	}
-	
+/*	
 	@Test
 	public void getSetBuildingsTest() {
 		Location l1 = new Location();
@@ -103,6 +103,6 @@ public class LocationTest {
 		buildingSet.add(b3);
 		l1.setBuildings(buildingSet);
 		assertTrue(l1.getBuildings().size() == 3);
-	}
+	}*/
 
 }

@@ -44,26 +44,28 @@ public class Building {
 	@Column(name = "BUILDING_NAME")
 	private String buildingName;
 	
-	@ManyToOne
-	@JoinColumn(name = "LOCATION_ID")
-	private Location address;
-
-	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-	private Set<Room> rooms;
-
-	public Building() {
-		super();
-	}
+	@JsonIgnoreProperties
+	@ManyToOne(targetEntity=Location.class,fetch=FetchType.LAZY)
+	@JoinColumn(name="LOCATION_ID")
+	private Location location;  //these lines currently exist
 	
-	
+	@Column(name="LOCATION_ID", updatable=false, insertable=false)
+	private Integer address;
 
-	public Building(int buildingId, Boolean isActive, String buildingName, Location address, Set<Room> rooms) {
+	public Building(int buildingId, Boolean isActive, String buildingName, Location location, Integer address) {
 		super();
 		this.buildingId = buildingId;
 		this.isActive = isActive;
 		this.buildingName = buildingName;
+		this.location = location;
 		this.address = address;
-		this.rooms = rooms;
+	}
+	
+	
+
+	public Building() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 
@@ -98,22 +100,26 @@ public class Building {
 		this.buildingName = buildingName;
 	}
 
-	public Location getAddress() {
+	/*Hibernate.initialize(
+	public Location getLocation() {
+		return location;
+	});*/
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+	public Integer getAddress() {
 		return address;
 	}
 
-	public void setAddress(Location address) {
+	public void setAddress(Integer address) {
 		this.address = address;
 	}
 
-	public Set<Room> getRooms() {
-		return rooms;
-	}
+	
 
-	public void setRooms(Set<Room> rooms) {
-		this.rooms = rooms;
-	}
-
+	
 	
 }
 

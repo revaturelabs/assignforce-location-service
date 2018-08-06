@@ -1,5 +1,6 @@
 package com.revature.assignforce.beans;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -37,22 +38,26 @@ public class Location {
 
 	@Column(name = "IS_ACTIVE")
 	private Boolean isActive;
-
+/*
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<Building> buildings;
+	private Set<Building> buildings;*/
 
 	public Location() {
 		super();
 	}
 
-	public Location(int id, String name, String city, String state, Boolean isActive, Set<Building> buildings) {
+	public Location(int id, String name, String city, String state, Boolean isActive) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.city = city;
 		this.state = state;
 		this.isActive = isActive;
-		this.buildings = buildings;
+		
+	}
+
+	public Location(int i, String string, String string2, String string3, boolean b, HashSet<Building> buildingSet) {
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {
@@ -95,12 +100,6 @@ public class Location {
 		this.isActive = isActive;
 	}
 
-	public Set<Building> getBuildings() {
-		return buildings;
-	}
 
-	public void setBuildings(Set<Building> buildings) {
-		this.buildings = buildings;
-	}
 
 }

@@ -64,7 +64,7 @@ public class BuildingTest {
 		assertTrue(b1.getBuildingName().equals("HQ"));
 	}
 	
-	@Test
+/*	@Test
 	public void getSetRoomsTest() {
 		Room r1 = new Room(1, "Class A");
 		Room r2 = new Room(2, "Class B");
@@ -76,6 +76,6 @@ public class BuildingTest {
 		Building b1 = new Building();
 		b1.setRooms(roomSet);
 		assertTrue(b1.getRooms().size() == 3);
-	}
+	}*/
 
 }
