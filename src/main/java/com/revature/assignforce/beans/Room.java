@@ -33,7 +33,7 @@ public class Room {
 	@JsonIgnoreProperties
 	@ManyToOne(targetEntity=Building.class,fetch=FetchType.LAZY)
 	@JoinColumn(name = "BUILDING_ID")
-	private Building notbuilding;
+	private Building buildingObject;
 
 	
 	@Column(name="BUILDING_ID", updatable=false, insertable=false)
@@ -52,7 +52,7 @@ public class Room {
 		super();
 		this.id = id;
 		this.roomName = roomName;
-		this.notbuilding = notbuilding;
+		this.buildingObject = notbuilding;
 		this.building = building;
 	}
 
@@ -88,7 +88,7 @@ public class Room {
 
 
 	public void setNotbuilding(Building notbuilding) {
-		this.notbuilding = notbuilding;
+		this.buildingObject = notbuilding;
 	}
 
 

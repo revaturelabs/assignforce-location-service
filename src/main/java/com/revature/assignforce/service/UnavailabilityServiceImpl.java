@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.revature.assignforce.beans.Room;
 import com.revature.assignforce.beans.Unavailability;
 
 import com.revature.assignforce.repos.UnavailabilityRepository;
@@ -17,6 +17,10 @@ public class UnavailabilityServiceImpl  implements UnavailabilityService {
 	
 	@Autowired
 	private UnavailabilityRepository unavailabilityRepository;
+	
+	@Autowired
+	private RoomService roomService;
+
 
 	@Override
 	public List<Unavailability> getAll() {
@@ -42,4 +46,22 @@ public class UnavailabilityServiceImpl  implements UnavailabilityService {
 	public void delete(int id) {
 		unavailabilityRepository.deleteById(id);
 	}
+	
+	public Unavailability addUnavailability(Unavailability t, int roomId) {
+		Room theRoom = (roomService.findById(roomId).orElse(null));
+		t.setRoomObject(theRoom);
+		
+		return create(t);
+		
+	}
+	
+	public Unavailability updateUnavailability(Unavailability t, int roomId) {
+		Room theRoom = (roomService.findById(roomId).orElse(null));
+		t.setRoomObject(theRoom);
+		
+		return update(t);
+		
+	}
+	
+	
 }

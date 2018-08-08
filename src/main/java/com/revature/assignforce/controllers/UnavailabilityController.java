@@ -52,27 +52,28 @@ public class UnavailabilityController {
 		return new ResponseEntity<>(a.get(), HttpStatus.OK);
 	}
 
-	// create
-	@PostMapping
-	public ResponseEntity<Unavailability> add(@RequestHeader(value = "RoomId" ) String roomId, @RequestBody Unavailability a) {
+	/** create, also need to send room id through the url because we cannot set the room field in 
+	Unavailability (because the room field is updatable=false and insertable=false), the only possible way is to
+	 set the roomObject to finding the room by id and then setting roomObject to the object returned (which will also change the room 
+	field in Unavailability to the primary key of the room) 
+	*/
+	@PostMapping(value = "{roomId}")
+	public ResponseEntity<Unavailability> add(@PathVariable("roomId") int roomId, @RequestBody Unavailability a) {
 	
-		int myRoomId = Integer.parseInt(roomId);
-		Room theRoom = (roomService.findById(myRoomId).orElse(null));
-		a.setNotroom(theRoom);
+		//find by room to add to Unavailability object
 		
-		a = unavailabilityService.create(a);
+		a = unavailabilityService.addUnavailability(a, roomId);
 		if (a == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		return new ResponseEntity<>(a, HttpStatus.CREATED);
 	}
 
-	// update
-	@PutMapping
-	public ResponseEntity<Unavailability> update( @RequestHeader(value = "RoomId" )  String roomId, @RequestBody Unavailability a) {
+	@PutMapping(value = "{roomId}")
+	public ResponseEntity<Unavailability> update(@PathVariable("roomId") int roomId, @RequestBody Unavailability a) {
 		
-		int myRoomId = Integer.parseInt(roomId);
-		Room theRoom = (roomService.findById(myRoomId).orElse(null));
-		a.setNotroom(theRoom);
+		//find the room to add to Unavailability object
+		Room theRoom = (roomService.findById(roomId).orElse(null));
+		a.setRoomObject(theRoom);
 		
 		a = unavailabilityService.update(a);
 		if (a == null)

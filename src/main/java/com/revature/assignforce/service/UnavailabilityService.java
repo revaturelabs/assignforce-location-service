@@ -17,6 +17,10 @@ public interface UnavailabilityService {
 	Unavailability create(Unavailability t);
 
 	void delete(int id);
+	
+	public Unavailability addUnavailability(Unavailability t, int roomId);
+	
+	public Unavailability updateUnavailability(Unavailability t, int roomId);
 
 
 }
