@@ -15,11 +15,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
+import com.revature.assignforce.validators.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "Unavailability ")
+@Table(name = "Unavailability")
+@IntervalHolder(startInterval="startDate", endInterval="endDate", inclusive=true)
 public class Unavailability {
 	
 	@Id

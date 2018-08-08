@@ -24,7 +24,7 @@ import com.revature.assignforce.service.UnavailabilityService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/unavailable")
+@RequestMapping("/unavailabilities")
 public class UnavailabilityController {
 	
 	@Autowired
