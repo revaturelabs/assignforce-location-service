@@ -63,7 +63,7 @@ public class Building {
 	
 	
 
-	public Building() {
+	public Building(int i, boolean b, Object object, Set<Room> testSet) {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -71,6 +71,13 @@ public class Building {
 
 
 	public Building(int i, boolean b, String string, HashSet<Room> roomSet) {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public Building() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -122,5 +129,4 @@ public class Building {
 	
 	
 }
-
 

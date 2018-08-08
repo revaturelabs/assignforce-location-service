@@ -1,5 +1,7 @@
 package com.revature.assignforce.beans;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -58,6 +60,11 @@ public class Room {
 
 
 	public Room(int i, String string) {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Room(int i, String string, Set<Unavailability> testSet) {
 		// TODO Auto-generated constructor stub
 	}
 

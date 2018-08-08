@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -27,6 +28,7 @@ public class Unavailability {
 	private int id;
 	
 	@Column(name = "DESCRIPTION")
+	@NotNull
 	private String description;
 	
 	@Column(name = "END_DATE")
