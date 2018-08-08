@@ -56,22 +56,9 @@ public class LocationControllerTest {
 	
 	@Test
 	public void getAllTest() {
-		Set<Unavailability> testSet = new TreeSet<Unavailability>();
-		Room r1 = new Room(1, "Class A", testSet);
-		Room r2 = new Room(2, "Class B", testSet);
-		HashSet<Room> roomSet = new HashSet<Room>();
-		roomSet.add(r1);
-		roomSet.add(r2);
-		Building b1 = new Building(1, true, "BuildingOne", roomSet);
-		Building b2 = new Building(2, false, "BuildingTwo", roomSet);
-		Building b3 = new Building(4, true, "BuildingFour", roomSet);
-		HashSet<Building> buildingSet = new HashSet<Building>();
-		buildingSet.add(b1);
-		buildingSet.add(b2);
-		buildingSet.add(b3);
-		Location l1 = new Location(1, "Reston", "Reston", "VA", true, buildingSet);
-		Location l2 = new Location(6, "Tampa", "Tampa", "FL", false, buildingSet);
-		Location l3 = new Location(8, "Detroit", "Detroit", "MI", false, buildingSet);
+		Location l1 = new Location(1, "Reston", "Reston", "VA", true);
+		Location l2 = new Location(6, "Tampa", "Tampa", "FL", false);
+		Location l3 = new Location(8, "Detroit", "Detroit", "MI", false);
 		List<Location> locationList = new ArrayList<Location>();
 		locationList.add(l1);
 		locationList.add(l2);
@@ -83,20 +70,7 @@ public class LocationControllerTest {
 	
 	@Test
 	public void getByIdTestOk() {
-		Set<Unavailability> testSet = new TreeSet<Unavailability>();
-		Room r1 = new Room(1, "Class A", testSet);
-		Room r2 = new Room(2, "Class B", testSet);
-		HashSet<Room> roomSet = new HashSet<Room>();
-		roomSet.add(r1);
-		roomSet.add(r2);
-		Building b1 = new Building(1, true, "BuildingOne", roomSet);
-		Building b2 = new Building(2, false, "BuildingTwo", roomSet);
-		Building b3 = new Building(4, true, "BuildingFour", roomSet);
-		HashSet<Building> buildingSet = new HashSet<Building>();
-		buildingSet.add(b1);
-		buildingSet.add(b2);
-		buildingSet.add(b3);
-		Location l1 = new Location(5, "Reston", "Reston", "VA", true, buildingSet);
+		Location l1 = new Location(5, "Reston", "Reston", "VA", true);
 		Optional<Location> op1 = Optional.ofNullable(l1);
 		Mockito.when(locationRepository.findById(5)).thenReturn(op1);
 		ResponseEntity<Location> reTest = locationController.getById(5);
@@ -111,20 +85,7 @@ public class LocationControllerTest {
 	
 	@Test
 	public void addTestCreated() {
-		Set<Unavailability> testSet = new TreeSet<Unavailability>();
-		Room r1 = new Room(1, "Class A", testSet);
-		Room r2 = new Room(2, "Class B", testSet);
-		HashSet<Room> roomSet = new HashSet<Room>();
-		roomSet.add(r1);
-		roomSet.add(r2);
-		Building b1 = new Building(1, true, "BuildingOne", roomSet);
-		Building b2 = new Building(2, false, "BuildingTwo", roomSet);
-		Building b3 = new Building(4, true, "BuildingFour", roomSet);
-		HashSet<Building> buildingSet = new HashSet<Building>();
-		buildingSet.add(b1);
-		buildingSet.add(b2);
-		buildingSet.add(b3);
-		Location l1 = new Location(8, "San Diego", "San Diego", "CA", true, buildingSet);
+		Location l1 = new Location(8, "San Diego", "San Diego", "CA", true);
 		Mockito.when(locationRepository.save(l1)).thenReturn(l1);
 		ResponseEntity<Location> reTest = locationController.add(l1);
 		assertTrue(reTest.getBody().getId() == 8 && reTest.getStatusCode() == HttpStatus.CREATED);
@@ -132,40 +93,14 @@ public class LocationControllerTest {
 	
 	@Test
 	public void addTestBadRequest() {
-		Set<Unavailability> testSet = new TreeSet<Unavailability>();
-		Room r1 = new Room(1, "Class A", testSet);
-		Room r2 = new Room(2, "Class B", testSet);
-		HashSet<Room> roomSet = new HashSet<Room>();
-		roomSet.add(r1);
-		roomSet.add(r2);
-		Building b1 = new Building(1, true, "BuildingOne", roomSet);
-		Building b2 = new Building(2, false, "BuildingTwo", roomSet);
-		Building b3 = new Building(4, true, "BuildingFour", roomSet);
-		HashSet<Building> buildingSet = new HashSet<Building>();
-		buildingSet.add(b1);
-		buildingSet.add(b2);
-		buildingSet.add(b3);
-		Location l1 = new Location(13, "Scranton", "Scranton", "PA", false, buildingSet);
+		Location l1 = new Location(13, "Scranton", "Scranton", "PA", false);
 		ResponseEntity<Location> reTest = locationController.add(l1);
 		assertTrue(reTest.getStatusCode() == HttpStatus.BAD_REQUEST);
 	}
 	
 	@Test
 	public void updateTestOK() {
-		Set<Unavailability> testSet = new TreeSet<Unavailability>();
-		Room r1 = new Room(1, "Class A", testSet);
-		Room r2 = new Room(2, "Class B", testSet);
-		HashSet<Room> roomSet = new HashSet<Room>();
-		roomSet.add(r1);
-		roomSet.add(r2);
-		Building b1 = new Building(1, true, "BuildingOne", roomSet);
-		Building b2 = new Building(2, false, "BuildingTwo", roomSet);
-		Building b3 = new Building(4, true, "BuildingFour", roomSet);
-		HashSet<Building> buildingSet = new HashSet<Building>();
-		buildingSet.add(b1);
-		buildingSet.add(b2);
-		buildingSet.add(b3);
-		Location l1 = new Location(8, "San Diego", "San Diego", "CA", true, buildingSet);
+		Location l1 = new Location(8, "San Diego", "San Diego", "CA", true);
 		l1.setCity("Phoenix");
 		l1.setName("Phoenix");
 		l1.setState("AZ");
@@ -176,20 +111,7 @@ public class LocationControllerTest {
 	
 	@Test
 	public void updateTestBadRequest() {
-		Set<Unavailability> testSet = new TreeSet<Unavailability>();
-		Room r1 = new Room(1, "Class A", testSet);
-		Room r2 = new Room(2, "Class B", testSet);
-		HashSet<Room> roomSet = new HashSet<Room>();
-		roomSet.add(r1);
-		roomSet.add(r2);
-		Building b1 = new Building(1, true, "BuildingOne", roomSet);
-		Building b2 = new Building(2, false, "BuildingTwo", roomSet);
-		Building b3 = new Building(4, true, "BuildingFour", roomSet);
-		HashSet<Building> buildingSet = new HashSet<Building>();
-		buildingSet.add(b1);
-		buildingSet.add(b2);
-		buildingSet.add(b3);
-		Location l1 = new Location(19, "San Diego", "San Diego", "CA", true, buildingSet);
+		Location l1 = new Location(19, "San Diego", "San Diego", "CA", true);
 		l1.setCity("Phoenix");
 		l1.setName("Phoenix");
 		l1.setState("AZ");

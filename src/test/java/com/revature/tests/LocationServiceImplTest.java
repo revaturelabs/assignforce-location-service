@@ -49,21 +49,8 @@ public class LocationServiceImplTest {
 	
 	@Test
 	public void getAllTest() {
-		Set<Unavailability> testSet = new TreeSet<Unavailability>();
-		Room r1 = new Room(1, "Class A", testSet);
-		Room r2 = new Room(2, "Class B", testSet);
-		HashSet<Room> roomSet = new HashSet<Room>();
-		roomSet.add(r1);
-		roomSet.add(r2);
-		Building b1 = new Building(1, true, "BuildingOne", roomSet);
-		Building b2 = new Building(2, false, "BuildingTwo", roomSet);
-		Building b3 = new Building(4, true, "BuildingFour", roomSet);
-		HashSet<Building> buildingSet = new HashSet<Building>();
-		buildingSet.add(b1);
-		buildingSet.add(b2);
-		buildingSet.add(b3);
-		Location l1 = new Location(1, "Reston", "Reston", "VA", true, buildingSet);
-		Location l2 = new Location(6, "Tampa", "Tampa", "FL", false, buildingSet);
+		Location l1 = new Location(1, "Reston", "Reston", "VA", true);
+		Location l2 = new Location(6, "Tampa", "Tampa", "FL", false);
 		List<Location> locationList = new ArrayList<Location>();
 		locationList.add(l1);
 		locationList.add(l2);
@@ -74,20 +61,7 @@ public class LocationServiceImplTest {
 	
 	@Test
 	public void findByIdTest() {
-		Set<Unavailability> testSet = new TreeSet<Unavailability>();
-		Room r1 = new Room(1, "Class A", testSet);
-		Room r2 = new Room(2, "Class B", testSet);
-		HashSet<Room> roomSet = new HashSet<Room>();
-		roomSet.add(r1);
-		roomSet.add(r2);
-		Building b1 = new Building(1, true, "BuildingOne", roomSet);
-		Building b2 = new Building(2, false, "BuildingTwo", roomSet);
-		Building b3 = new Building(4, true, "BuildingFour", roomSet);
-		HashSet<Building> buildingSet = new HashSet<Building>();
-		buildingSet.add(b1);
-		buildingSet.add(b2);
-		buildingSet.add(b3);
-		Location l1 = new Location(4, "Chicago", "Chicago", "IL", false, buildingSet);
+		Location l1 = new Location(4, "Chicago", "Chicago", "IL", false);
 		Optional<Location> op1 = Optional.ofNullable(l1);
 		Mockito.when(locationRepository.findById(4)).thenReturn(op1);
 		Optional<Location> lTest = locationService.findById(4);
@@ -96,20 +70,7 @@ public class LocationServiceImplTest {
 	
 	@Test
 	public void updateTest() {
-		Set<Unavailability> testSet = new TreeSet<Unavailability>();
-		Room r1 = new Room(1, "Class A", testSet);
-		Room r2 = new Room(2, "Class B", testSet);
-		HashSet<Room> roomSet = new HashSet<Room>();
-		roomSet.add(r1);
-		roomSet.add(r2);
-		Building b1 = new Building(1, true, "BuildingOne", roomSet);
-		Building b2 = new Building(2, false, "BuildingTwo", roomSet);
-		Building b3 = new Building(4, true, "BuildingFour", roomSet);
-		HashSet<Building> buildingSet = new HashSet<Building>();
-		buildingSet.add(b1);
-		buildingSet.add(b2);
-		buildingSet.add(b3);
-		Location l1 = new Location(4, "Chicago", "Chicago", "IL", false, buildingSet);
+		Location l1 = new Location(4, "Chicago", "Chicago", "IL", false);
 		l1.setIsActive(true);
 		Mockito.when(locationRepository.save(l1)).thenReturn(l1);
 		Location lTest = locationService.update(l1);
@@ -118,20 +79,7 @@ public class LocationServiceImplTest {
 	
 	@Test
 	public void createTest() {
-		Set<Unavailability> testSet = new TreeSet<Unavailability>();
-		Room r1 = new Room(1, "Class A", testSet);
-		Room r2 = new Room(2, "Class B", testSet);
-		HashSet<Room> roomSet = new HashSet<Room>();
-		roomSet.add(r1);
-		roomSet.add(r2);
-		Building b1 = new Building(1, true, "BuildingOne", roomSet);
-		Building b2 = new Building(2, false, "BuildingTwo", roomSet);
-		Building b3 = new Building(4, true, "BuildingFour", roomSet);
-		HashSet<Building> buildingSet = new HashSet<Building>();
-		buildingSet.add(b1);
-		buildingSet.add(b2);
-		buildingSet.add(b3);
-		Location l1 = new Location(5, "New York", "New York", "NY", true, buildingSet);
+		Location l1 = new Location(5, "New York", "New York", "NY", true);
 		Mockito.when(locationRepository.save(l1)).thenReturn(l1);
 		Location lTest = locationService.create(l1);
 		assertTrue(lTest.getId() == 5);

@@ -1,5 +1,7 @@
 package com.revature.assignforce.beans;
 
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -10,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -18,9 +21,16 @@ import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
-@Component
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+
 @Entity
 @Table(name = "Buildings")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Building {
 
 	// Building_ID, Building_Name, Location_ID, Unavailability
@@ -34,28 +44,32 @@ public class Building {
 	private Boolean isActive;
 
 	@Column(name = "BUILDING_NAME")
-	@NotNull(message="buildingName must not be null")
+	@NotNull(message = "buildingName must not be null")
 	@Size(min = 1, max =128, message = "buildingName must be between 1 and 128")
 	private String buildingName;
-
-	@OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
-	@JoinColumn
-	private Set<Room> rooms;
-
-	public Building() {
-		super();
-	}
-
 	
+	@JsonIgnoreProperties
+	@ManyToOne(targetEntity=Location.class,fetch=FetchType.LAZY)
+	@JoinColumn(name="LOCATION_ID")
+	private Location location;  //these lines currently exist
+	
+	@Column(name="LOCATION_ID", updatable=false, insertable=false)
+	private Integer address;
 
-	public Building(int buildingId, Boolean isActive,
-			@NotNull(message = "buildingName cannot be null") @Size(min = 1, max = 128) String buildingName,
-			Set<Room> rooms) {
+	public Building(int buildingId, Boolean isActive, String buildingName, Location location, Integer address) {
 		super();
 		this.buildingId = buildingId;
 		this.isActive = isActive;
 		this.buildingName = buildingName;
-		this.rooms = rooms;
+		this.location = location;
+		this.address = address;
+	}
+	
+
+
+	public Building() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 
@@ -84,11 +98,23 @@ public class Building {
 		this.buildingName = buildingName;
 	}
 
-	public Set<Room> getRooms() {
-		return rooms;
+
+
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 
-	public void setRooms(Set<Room> rooms) {
-		this.rooms = rooms;
+	public Integer getAddress() {
+		return address;
 	}
+
+	public void setAddress(Integer address) {
+		this.address = address;
+	}
+
+	
+
+	
+	
 }
+

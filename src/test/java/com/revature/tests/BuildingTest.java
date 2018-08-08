@@ -44,24 +44,6 @@ public class BuildingTest {
 	   }
 	
 	@Test
-	public void buildingTest1() {
-		Building b1 = new Building();
-		assertNotNull(b1);
-	}
-	
-	@Test
-	public void buildingTest2() {
-		Set<Unavailability> testSet = new TreeSet<Unavailability>();
-		Room r1 = new Room(1, "Class A", testSet);
-		Room r2 = new Room(2, "Class B", testSet);
-		HashSet<Room> roomSet = new HashSet<Room>();
-		roomSet.add(r1);
-		roomSet.add(r2);
-		Building b1 = new Building(7, true, "BuildingOne", roomSet);
-		assertTrue(b1.getBuildingId() == 7);
-	}
-	
-	@Test
 	public void getSetIdTest() {
 		Building b1 = new Building();
 		b1.setBuildingId(96);
@@ -82,7 +64,7 @@ public class BuildingTest {
 		assertTrue(b1.getBuildingName().equals("HQ"));
 	}
 	
-	@Test
+/*	@Test
 	public void getSetRoomsTest() {
 		Set<Unavailability> testSet = new TreeSet<Unavailability>();
 		Room r1 = new Room(1, "Class A", testSet);
@@ -96,7 +78,7 @@ public class BuildingTest {
 		b1.setRooms(roomSet);
 		assertTrue(b1.getRooms().size() == 3);
 	}
-
+*/
 	/**
 	 * @author JavierCastano
 	 * Asserts that there is a validation constraint on b1 because its buildingName is null.
@@ -104,8 +86,8 @@ public class BuildingTest {
 	
 	@Test
 	public void buildingNameNotNull() {
-		Set<Room> testSet = new TreeSet<Room>();
-		Building b1 = new Building(1, false, null, testSet);
+		Building b1 = new Building();
+		b1.setBuildingName(null);
 		
 	    Set<ConstraintViolation<Building>> constraintViolations =
 	  	      validator.validate(b1);
@@ -125,8 +107,8 @@ public class BuildingTest {
 	
 	@Test
 	public void BuildingNameSizeGreaterThanEmptyString() {
-		Set<Room> testSet = new TreeSet<Room>();
-		Building b1 = new Building(1, false, "", testSet);
+		Building b1 = new Building();
+		b1.setBuildingName("");
 		
 		Set<ConstraintViolation<Building>> constraintViolations =
 		  	      validator.validate(b1);
@@ -146,12 +128,12 @@ public class BuildingTest {
 	
 	@Test
 	public void BuildingSizeLessThan129() {
-		Set<Room> testSet = new TreeSet<Room>();
-		Building b1 = new Building(1, false, "1234567890123456789012345678901234567890"
+		Building b1 = new Building();
+		b1.setBuildingName("1234567890123456789012345678901234567890"
 				+ "1234567890123456789012345678901234567890"
 				+ "1234567890123456789012345678901234567890"
-				+ "123456789", testSet);
-
+				+ "123456789");
+		
 		Set<ConstraintViolation<Building>> constraintViolations =
 		  	      validator.validate(b1);
 		  	 
@@ -162,3 +144,4 @@ public class BuildingTest {
 		  	 	  );
 	}
 }
+

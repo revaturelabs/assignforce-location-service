@@ -1,17 +1,8 @@
 package com.revature.tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,9 +14,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.revature.assignforce.beans.Building;
 import com.revature.assignforce.beans.Location;
 import com.revature.assignforce.beans.Room;
-import com.revature.assignforce.beans.Unavailability;
-
-
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -37,46 +25,6 @@ public class LocationTest {
 	public Location Location() {
 		return new Location();
 		}
-	}
-        
-        // Location name, city, and state must contain at least one character
-        @Test
-        public void locationFieldsCannotBeEmpty()
-        {
-            ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-            Validator validator = factory.getValidator();
-            
-            Location location = new Location("", "", "", false, new HashSet<>());
-            
-            Set<ConstraintViolation<Location>> constraintViolations = 
-                                                validator.validate(location);
-            assertEquals(3, constraintViolations.size());
-        }
-        
-	
-	@Test
-	public void locationTest1() {
-		Location l1 = new Location();
-		assertNotNull(l1);
-	}
-	
-	@Test
-	public void locationTest2() {
-		Set<Unavailability> testSet = new TreeSet<Unavailability>();
-		Room r1 = new Room(1, "Class A", testSet);
-		Room r2 = new Room(2, "Class B", testSet);
-		HashSet<Room> roomSet = new HashSet<Room>();
-		roomSet.add(r1);
-		roomSet.add(r2);
-		Building b1 = new Building(1, true, "BuildingOne", roomSet);
-		Building b2 = new Building(2, false, "BuildingTwo", roomSet);
-		Building b3 = new Building(4, true, "BuildingFour", roomSet);
-		HashSet<Building> buildingSet = new HashSet<Building>();
-		buildingSet.add(b1);
-		buildingSet.add(b2);
-		buildingSet.add(b3);
-		Location l1 = new Location(5, "Reston", "Reston", "VA", true, buildingSet);
-		assertTrue(l1.getId() == 5);
 	}
 	
 	@Test
@@ -113,25 +61,6 @@ public class LocationTest {
 		l1.setIsActive(true);
 		assertTrue(l1.getIsActive());
 	}
-	
-	@Test
-	public void getSetBuildingsTest() {
-		Location l1 = new Location();
-		Set<Unavailability> testSet = new TreeSet<Unavailability>();
-		Room r1 = new Room(1, "Class A", testSet);
-		Room r2 = new Room(2, "Class B", testSet);
-		HashSet<Room> roomSet = new HashSet<Room>();
-		roomSet.add(r1);
-		roomSet.add(r2);
-		Building b1 = new Building(1, true, "BuildingOne", roomSet);
-		Building b2 = new Building(2, false, "BuildingTwo", roomSet);
-		Building b3 = new Building(4, true, "BuildingFour", roomSet);
-		HashSet<Building> buildingSet = new HashSet<Building>();
-		buildingSet.add(b1);
-		buildingSet.add(b2);
-		buildingSet.add(b3);
-		l1.setBuildings(buildingSet);
-		assertTrue(l1.getBuildings().size() == 3);
-	}
+
 
 }
