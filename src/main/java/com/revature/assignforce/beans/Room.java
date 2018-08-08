@@ -34,6 +34,7 @@ public class Room {
 	private int id;
 
 	@Column(name = "Room_Name")
+	@NotNull(message = "roomName must not be null")
 	@Size(min = 1, max = 128, message = "RoomName size must be between 1 and 128")
 	private String roomName;
 

@@ -44,6 +44,7 @@ public class Building {
 	private Boolean isActive;
 
 	@Column(name = "BUILDING_NAME")
+	@NotNull(message = "buildingName must not be null")
 	@Size(min = 1, max =128, message = "buildingName must be between 1 and 128")
 	private String buildingName;
 	
