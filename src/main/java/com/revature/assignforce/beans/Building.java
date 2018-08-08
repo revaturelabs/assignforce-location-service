@@ -27,7 +27,7 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-//@Component
+
 @Entity
 @Table(name = "Buildings")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -98,10 +98,7 @@ public class Building {
 		this.buildingName = buildingName;
 	}
 
-	/*Hibernate.initialize(
-	public Location getLocation() {
-		return location;
-	});*/
+
 
 	public void setLocation(Location location) {
 		this.location = location;

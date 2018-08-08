@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-//@Component
+
 @Entity
 @Table(name = "Room")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -93,9 +93,7 @@ public class Room {
 
 
 
-/*	public Building getbuildingObject() {
-		return notbuilding;
-	}*/
+
 
 
 	public void setNotbuilding(Building notbuilding) {

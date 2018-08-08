@@ -114,9 +114,7 @@ public class Unavailability {
 	}
 
 
-	/*public Room getRoomObject() {
-		return notroom;
-	}*/
+	
 
 
 	public void setRoomObject(Room room) {

@@ -18,7 +18,7 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-//@Component
+
 @Entity
 @Table(name = "Location")
 public class Location {
@@ -39,9 +39,7 @@ public class Location {
 
 	@Column(name = "IS_ACTIVE")
 	private Boolean isActive;
-/*
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<Building> buildings;*/
+
 
 	public Location() {
 		super();
