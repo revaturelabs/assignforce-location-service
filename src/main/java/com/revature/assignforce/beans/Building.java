@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
@@ -42,6 +44,7 @@ public class Building {
 	private Boolean isActive;
 
 	@Column(name = "BUILDING_NAME")
+	@Size(min = 1, max =128, message = "buildingName must be between 1 and 128")
 	private String buildingName;
 	
 	@JsonIgnoreProperties
@@ -61,19 +64,6 @@ public class Building {
 		this.address = address;
 	}
 	
-	
-
-	public Building(int i, boolean b, Object object, Set<Room> testSet) {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-
-
-	public Building(int i, boolean b, String string, HashSet<Room> roomSet) {
-		// TODO Auto-generated constructor stub
-	}
-
 
 
 	public Building() {

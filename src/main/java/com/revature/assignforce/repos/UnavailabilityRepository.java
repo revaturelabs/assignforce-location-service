@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.revature.assignforce.beans.Unavailability;
 
-
 @Repository
 public interface UnavailabilityRepository extends JpaRepository<Unavailability, Integer> {
 

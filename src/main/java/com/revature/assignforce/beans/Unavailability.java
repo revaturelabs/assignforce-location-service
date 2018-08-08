@@ -1,3 +1,4 @@
+
 package com.revature.assignforce.beans;
 
 import java.time.LocalDate;
@@ -113,7 +114,7 @@ public class Unavailability {
 	}
 
 
-	/*public Room getNotroom() {
+	/*public Room getRoomObject() {
 		return notroom;
 	}*/
 
@@ -131,16 +132,4 @@ public class Unavailability {
 	public void setRoom(Integer room) {
 		this.room = room;
 	}
-
-	
-
-
-
-	
-
-	
-	
-	
-	
-
 }

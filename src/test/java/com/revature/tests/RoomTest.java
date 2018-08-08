@@ -52,13 +52,6 @@ public class RoomTest {
 	}
 	
 	@Test
-	public void roomTest2() {
-		Set<Unavailability> testSet = new TreeSet<Unavailability>();
-		Room r1 = new Room(4, "Room4", testSet);
-		assertTrue(r1.getId() == 4);
-	}
-	
-	@Test
 	public void getSetIdTest() {
 		Room r1 = new Room();
 		r1.setId(59);
@@ -79,8 +72,8 @@ public class RoomTest {
 	
 	@Test
 	public void roomNameNotNull() {
-		Set<Unavailability> testSet = new TreeSet<Unavailability>();
-		Room r1 = new Room(1, null, testSet);
+		Room r1 = new Room();
+		r1.setRoomName(null);
 		
 	    Set<ConstraintViolation<Room>> constraintViolations =
 	      validator.validate(r1);
@@ -102,8 +95,8 @@ public class RoomTest {
 	@Test
 	public void roomNameGreaterThanEmptyString() {
 		
-		Set<Unavailability> testSet = new TreeSet<Unavailability>();
-		Room r1 = new Room(1, "", testSet);
+		Room r1 = new Room();
+		r1.setRoomName("");
 		
 		Set<ConstraintViolation<Room>> constraintViolations =
 			      validator.validate(r1);
@@ -123,11 +116,11 @@ public class RoomTest {
 	
 	@Test
 	public void roomNameSizeLessThan129() {
-		Set<Unavailability> testSet = new TreeSet<Unavailability>();
-		Room r1 = new Room(1, "1234567890123456789012345678901234567890"
+		Room r1 = new Room();
+		r1.setRoomName("1234567890123456789012345678901234567890"
 				+ "1234567890123456789012345678901234567890" 
 				+ "1234567890123456789012345678901234567890" 
-				+ "123456789", testSet);
+				+ "123456789");
 		
 		Set<ConstraintViolation<Room>> constraintViolations =
 			      validator.validate(r1);

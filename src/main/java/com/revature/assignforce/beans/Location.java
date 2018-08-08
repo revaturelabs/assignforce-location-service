@@ -1,3 +1,4 @@
+
 package com.revature.assignforce.beans;
 
 import java.util.HashSet;
@@ -103,3 +104,4 @@ public class Location {
 
 
 }
+
