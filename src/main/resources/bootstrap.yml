@@ -1,7 +1,0 @@
-spring:
-  cloud:
-    config:
-      name: location-service
-      discovery:
-        service-id: config-service
-        enabled: true
