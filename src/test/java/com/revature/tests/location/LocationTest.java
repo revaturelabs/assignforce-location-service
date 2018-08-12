@@ -1,4 +1,4 @@
-package com.revature.tests;
+package com.revature.tests.location;
 
 import static org.junit.Assert.*;
 
@@ -61,6 +61,4 @@ public class LocationTest {
 		l1.setIsActive(true);
 		assertTrue(l1.getIsActive());
 	}
-
-
 }

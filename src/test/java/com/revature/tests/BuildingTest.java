@@ -11,9 +11,11 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import com.revature.assignforce.beans.Location;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,12 +33,17 @@ public class BuildingTest {
 	
 	@Configuration
 	static class BuildingTestContextConfiguration {
-	@Bean
-	public Building Building() {
-		return new Building();
+		@Bean
+		public Building Building() {
+			return new Building();
+		}
+
+		@Bean
+		public Location Location() {
+			return new Location();
 		}
 	}
-	
+
 	@BeforeClass
 	   public static void setUp() {
 	      ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
@@ -62,6 +69,18 @@ public class BuildingTest {
 		Building b1 = new Building();
 		b1.setBuildingName("HQ");
 		assertTrue(b1.getBuildingName().equals("HQ"));
+	}
+
+	/**
+	 * @author RobertAustin
+	 */
+	@Test
+	public void getSetLocationTest(){
+		Building b1 = new Building();
+		Location l1 = new Location(1, "Reston", "Reston", "VA", true);
+		b1.setLocation(l1);
+		assertTrue(b1.getLocation().getId() == 1 && b1.getLocation().getName().equals("Reston")
+			&& b1.getLocation().getCity().equals("Reston") && b1.getLocation().getState().equals("VA") && b1.getLocation().getIsActive());
 	}
 	
 /*	@Test

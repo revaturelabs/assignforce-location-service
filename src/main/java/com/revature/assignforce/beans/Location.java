@@ -52,11 +52,6 @@ public class Location {
 		this.city = city;
 		this.state = state;
 		this.isActive = isActive;
-		
-	}
-
-	public Location(int i, String string, String string2, String string3, boolean b, HashSet<Building> buildingSet) {
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {
@@ -98,8 +93,5 @@ public class Location {
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
-
-
-
 }
 

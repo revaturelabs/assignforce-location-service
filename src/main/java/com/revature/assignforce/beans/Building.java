@@ -56,6 +56,11 @@ public class Building {
 	@Column(name="LOCATION_ID", updatable=false, insertable=false)
 	private Integer address;
 
+
+	public Building() {
+		super();
+	}
+
 	public Building(int buildingId, Boolean isActive, String buildingName, Location location, Integer address) {
 		super();
 		this.buildingId = buildingId;
@@ -64,15 +69,6 @@ public class Building {
 		this.location = location;
 		this.address = address;
 	}
-	
-
-
-	public Building() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-
 
 	public int getBuildingId() {
 		return buildingId;
@@ -98,12 +94,16 @@ public class Building {
 		this.buildingName = buildingName;
 	}
 
-
-
 	public void setLocation(Location location) {
 		this.location = location;
 	}
 
+	/**
+	 * @author RobertAustin
+	 */
+	public Location getLocation(){return location;}
+
+	//What is the address?
 	public Integer getAddress() {
 		return address;
 	}
@@ -111,10 +111,5 @@ public class Building {
 	public void setAddress(Integer address) {
 		this.address = address;
 	}
-
-	
-
-	
-	
 }
 

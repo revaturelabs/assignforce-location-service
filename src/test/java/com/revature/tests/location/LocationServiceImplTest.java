@@ -1,4 +1,4 @@
-package com.revature.tests;
+package com.revature.tests.location;
 
 import static org.junit.Assert.*;
 
