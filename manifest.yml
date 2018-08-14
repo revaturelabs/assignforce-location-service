@@ -1,5 +1,5 @@
 ---
-application:
+applications:
   - name: location-service
     memory: 2048M
     timeout: 120
@@ -7,6 +7,3 @@ application:
       - rabbit-mq-rev
       - discovery-rev
       - config-rev
-    docker:
-      image: ajuet/af-locations:latest
-      username: ajduet
