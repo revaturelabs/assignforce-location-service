@@ -33,17 +33,17 @@ public class RoomTest {
 	
 	@Configuration
 	static class RoomTestContextConfiguration {
-	@Bean
-	public Room Room() {
-		return new Room();
-		}
+		@Bean
+		public Room Room() {
+			return new Room();
+			}
 	}
 	
 	@BeforeClass
-	   public static void setUp() {
-	      ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-	      validator = factory.getValidator();
-	   }
+	public static void setUp() {
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		validator = factory.getValidator();
+	}
 	
 	@Test
 	public void roomTest1() {
@@ -63,6 +63,13 @@ public class RoomTest {
 		Room r1 = new Room();
 		r1.setRoomName("BlueRoom");
 		assertTrue(r1.getRoomName().equals("BlueRoom"));
+	}
+
+	@Test
+	public void getSetBuildingTest() {
+		Room b1 = new Room();
+		b1.setBuilding(5);
+		assertTrue(b1.getBuilding() == 5);
 	}
 
 	/**

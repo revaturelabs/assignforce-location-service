@@ -43,18 +43,14 @@ public class Room {
 	@JoinColumn(name = "BUILDING_ID")
 	private Building buildingObject;
 
-	
 	@Column(name="BUILDING_ID", updatable=false, insertable=false)
 	private Integer building;
 
-	
 
-	
 	public Room() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 
 	public Room(int id, String roomName, Building notbuilding, Integer building) {
 		super();
@@ -65,17 +61,14 @@ public class Room {
 	}
 
 
-	public Room(int i, String string) {
-		// TODO Auto-generated constructor stub
-	}
+//	public Room(int i, String string) {
+//		// TODO Auto-generated constructor stub
+//	}
 
-
-	
 
 	public int getId() {
 		return id;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
@@ -86,30 +79,22 @@ public class Room {
 		return roomName;
 	}
 
-
 	public void setRoomName(String roomName) {
 		this.roomName = roomName;
 	}
 
 
 
-
-
-
-	public void setNotbuilding(Building notbuilding) {
-		this.buildingObject = notbuilding;
-	}
+//	public void setNotbuilding(Building notbuilding) {
+//		this.buildingObject = notbuilding;
+//	}
 
 
 	public Integer getBuilding() {
 		return building;
 	}
 
-
 	public void setBuilding(Integer building) {
 		this.building = building;
 	}
-
-
-
 }

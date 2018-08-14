@@ -53,11 +53,6 @@ public class Unavailability {
 	private Integer room;
 
 
-	
-	
-	
-	
-	
 	public Unavailability(int id, String description, LocalDate endDate, LocalDate startDate,  Integer room) {
 		super();
 		this.id = id;
@@ -67,7 +62,6 @@ public class Unavailability {
 		//this.notroom = notroom;
 		this.room = room;
 	}
-
 
 	public Unavailability() {
 		super();
@@ -79,7 +73,6 @@ public class Unavailability {
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -88,7 +81,6 @@ public class Unavailability {
 	public String getDescription() {
 		return description;
 	}
-
 
 	public void setDescription(String description) {
 		this.description = description;
@@ -99,7 +91,6 @@ public class Unavailability {
 		return endDate;
 	}
 
-
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
@@ -109,13 +100,10 @@ public class Unavailability {
 		return startDate;
 	}
 
-
 	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-
-	
 
 
 	public void setRoomObject(Room room) {
@@ -126,7 +114,6 @@ public class Unavailability {
 	public Integer getRoom() {
 		return room;
 	}
-
 
 	public void setRoom(Integer room) {
 		this.room = room;

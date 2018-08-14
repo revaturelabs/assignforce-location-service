@@ -94,16 +94,12 @@ public class Building {
 		this.buildingName = buildingName;
 	}
 
-	public void setLocation(Location location) {
-		this.location = location;
-	}
+//	public void setLocation(Location location) {
+//		this.location = location;
+//	}
+//
+//	public Location getLocation(){return location;}
 
-	/**
-	 * @author RobertAustin
-	 */
-	public Location getLocation(){return location;}
-
-	//What is the address?
 	public Integer getAddress() {
 		return address;
 	}

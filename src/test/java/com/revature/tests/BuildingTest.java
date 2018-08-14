@@ -22,7 +22,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.revature.assignforce.beans.Building;
-import com.revature.assignforce.beans.Room;
 import com.revature.assignforce.beans.Unavailability;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -45,11 +44,17 @@ public class BuildingTest {
 	}
 
 	@BeforeClass
-	   public static void setUp() {
-	      ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-	      validator = factory.getValidator();
-	   }
-	
+	public static void setUp() {
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		validator = factory.getValidator();
+	}
+
+	@Test
+	public void buildingTest1() {
+		Building b1 = new Building();
+		assertNotNull(b1);
+	}
+
 	@Test
 	public void getSetIdTest() {
 		Building b1 = new Building();
@@ -71,17 +76,21 @@ public class BuildingTest {
 		assertTrue(b1.getBuildingName().equals("HQ"));
 	}
 
-	/**
-	 * @author RobertAustin
-	 */
 	@Test
-	public void getSetLocationTest(){
+	public void getSetAddressTest() {
 		Building b1 = new Building();
-		Location l1 = new Location(1, "Reston", "Reston", "VA", true);
-		b1.setLocation(l1);
-		assertTrue(b1.getLocation().getId() == 1 && b1.getLocation().getName().equals("Reston")
-			&& b1.getLocation().getCity().equals("Reston") && b1.getLocation().getState().equals("VA") && b1.getLocation().getIsActive());
+		b1.setAddress(5);
+		assertTrue(b1.getAddress() == 5);
 	}
+
+//	@Test
+//	public void getSetLocationTest(){
+//		Building b1 = new Building();
+//		Location l1 = new Location(1, "Reston", "Reston", "VA", true);
+//		b1.setLocation(l1);
+//		assertTrue(b1.getLocation().getId() == 1 && b1.getLocation().getName().equals("Reston")
+//			&& b1.getLocation().getCity().equals("Reston") && b1.getLocation().getState().equals("VA") && b1.getLocation().getIsActive());
+//	}
 	
 /*	@Test
 	public void getSetRoomsTest() {
@@ -110,7 +119,7 @@ public class BuildingTest {
 		
 	    Set<ConstraintViolation<Building>> constraintViolations =
 	  	      validator.validate(b1);
-	  	 
+
 	  	assertEquals(1, constraintViolations.size());
 	  	assertEquals(
 	  	 	     "buildingName must not be null",
@@ -155,7 +164,7 @@ public class BuildingTest {
 		
 		Set<ConstraintViolation<Building>> constraintViolations =
 		  	      validator.validate(b1);
-		  	 
+
 		assertEquals(1, constraintViolations.size());
 		assertEquals(
 					"buildingName must be between 1 and 128",

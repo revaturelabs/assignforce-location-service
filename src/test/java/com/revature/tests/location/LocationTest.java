@@ -10,10 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import com.revature.assignforce.beans.Building;
 import com.revature.assignforce.beans.Location;
-import com.revature.assignforce.beans.Room;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -26,7 +23,13 @@ public class LocationTest {
 		return new Location();
 		}
 	}
-	
+
+	@Test
+	public void locationTest1() {
+		Location ll = new Location();
+		assertNotNull(ll);
+	}
+
 	@Test
 	public void getSetIdTest() {
 		Location l1 = new Location();
