@@ -52,11 +52,11 @@ public class Room {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Room(int id, String roomName, Building notbuilding, Integer building) {
+	public Room(int id, String roomName, Integer building) {
 		super();
 		this.id = id;
 		this.roomName = roomName;
-		this.buildingObject = notbuilding;
+		//this.buildingObject = notbuilding;
 		this.building = building;
 	}
 

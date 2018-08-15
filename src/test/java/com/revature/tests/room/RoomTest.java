@@ -1,4 +1,4 @@
-package com.revature.tests;
+package com.revature.tests.room;
 
 import static org.junit.Assert.*;
 
