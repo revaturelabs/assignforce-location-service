@@ -47,7 +47,7 @@ public class Building {
 
 	@Column(name = "BUILDING_NAME")
 	@NotNull(message = "buildingName must not be null")
-	@Size(min = 1, max =128, message = "buildingName must be between 1 and 128")
+	@Size(min = 1, max =128, message = "buildingName length must be between 1 and 128")
 	private String buildingName;
 	
 	@JsonIgnoreProperties
@@ -63,12 +63,12 @@ public class Building {
 		super();
 	}
 
-	public Building(int buildingId, Boolean isActive, String buildingName, Location location, Integer address) {
+	public Building(int buildingId, Boolean isActive, String buildingName, Integer address) {
 		super();
 		this.buildingId = buildingId;
 		this.isActive = isActive;
 		this.buildingName = buildingName;
-		this.location = location;
+		//this.location = location;
 		this.address = address;
 	}
 

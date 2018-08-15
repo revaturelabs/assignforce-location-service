@@ -1,4 +1,4 @@
-package com.revature.tests;
+package com.revature.tests.building;
 
 import static org.junit.Assert.*;
 
@@ -143,7 +143,7 @@ public class BuildingTest {
 
 		assertEquals(1, constraintViolations.size());
 		assertEquals(
-					"buildingName must be between 1 and 128",
+					"buildingName length must be between 1 and 128",
 		  	 	    constraintViolations.iterator().next().getMessage()
 		  	 	  );
 	}
@@ -167,7 +167,7 @@ public class BuildingTest {
 
 		assertEquals(1, constraintViolations.size());
 		assertEquals(
-					"buildingName must be between 1 and 128",
+					"buildingName length must be between 1 and 128",
 		  	 	    constraintViolations.iterator().next().getMessage()
 		  	 	  );
 	}
