@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 
@@ -49,5 +50,39 @@ public class BuildingServiceImplTest {
         Mockito.when(buildingRepository.findAll()).thenReturn(buildingList);
         List<Building> testList = buildingService.getAll();
         assertTrue(testList.size() == 2);
+    }
+
+    @Test
+    public void findByIdTest() {
+        Building b1 = new Building(4, true, "NEC", 2);
+        Optional<Building> op1 = Optional.ofNullable(b1);
+        Mockito.when(buildingRepository.findById(4)).thenReturn(op1);
+        Optional<Building> lTest = buildingService.findById(4);
+        assertTrue(lTest.get().getBuildingName().equals("NEC"));
+    }
+
+    @Test
+    public void updateTest() {
+        Building b1 = new Building(4, false, "NEC", 1);
+        b1.setIsActive(true);
+        Mockito.when(buildingRepository.save(b1)).thenReturn(b1);
+        Building lTest = buildingService.update(b1);
+        assertTrue(lTest.getIsActive());
+    }
+
+    @Test
+    public void createTest() {
+        Building b1 = new Building(5, true,"Business", 6);
+        Mockito.when(buildingRepository.save(b1)).thenReturn(b1);
+        Building lTest = buildingService.create(b1);
+        assertTrue(lTest.getBuildingId() == 5);
+    }
+
+    @Test
+    public void deleteTest() {
+        Mockito.doNothing().when(buildingRepository).deleteById(8);
+        buildingService.delete(8);
+        Optional<Building> opTest = buildingService.findById(8);
+        assertFalse(opTest.isPresent());
     }
 }
