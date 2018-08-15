@@ -140,7 +140,7 @@ public class BuildingTest {
 		
 		Set<ConstraintViolation<Building>> constraintViolations =
 		  	      validator.validate(b1);
-		  	 
+
 		assertEquals(1, constraintViolations.size());
 		assertEquals(
 					"buildingName must be between 1 and 128",

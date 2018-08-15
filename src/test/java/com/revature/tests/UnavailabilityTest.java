@@ -23,6 +23,12 @@ public class UnavailabilityTest {
     }
 
     @Test
+    public void UnavailabilityTest1() {
+        Unavailability u1 = new Unavailability();
+        assertNotNull(u1);
+    }
+
+    @Test
     public void getSetIdTest(){
         Unavailability u1 = new Unavailability();
         u1.setId(1);
@@ -39,11 +45,23 @@ public class UnavailabilityTest {
     @Test
     public void getSetStartDateTest(){
         Unavailability u1 = new Unavailability();
-        LocalDate date = LocalDate.parse("2018-11-06");
+        LocalDate date = LocalDate.parse("2018-06-11");
         u1.setStartDate(date);
+        assertTrue(u1.getStartDate().isEqual(LocalDate.parse("2018-06-11")));
+    }
 
-        //System.out.println(u1.getStartDate());
-        assertTrue(u1.getStartDate().isEqual(LocalDate.parse("2018-11-06")));
-        //assertThat(u1.getStartDate().isEqual("2018-11-06"));
+    @Test
+    public void getSetEndDateTest(){
+        Unavailability u1 = new Unavailability();
+        LocalDate date = LocalDate.parse("2018-08-17");
+        u1.setEndDate(date);
+        assertTrue(u1.getEndDate().isEqual(LocalDate.parse("2018-08-17")));
+    }
+
+    @Test
+    public void getSetRoomTest() {
+        Unavailability u1 = new Unavailability();
+        u1.setRoom(1402);
+        assertTrue(u1.getRoom() == 1402);
     }
 }

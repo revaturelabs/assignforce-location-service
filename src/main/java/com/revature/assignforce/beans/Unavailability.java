@@ -30,7 +30,6 @@ public class Unavailability {
 	private int id;
 	
 	@Column(name = "DESCRIPTION")
-	@NotNull
 	private String description;
 	
 	@Column(name = "END_DATE")
