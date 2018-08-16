@@ -1,4 +1,4 @@
-package com.revature.tests;
+package com.revature.tests.unavailability;
 
 import com.revature.assignforce.beans.Unavailability;
 import org.junit.Test;
