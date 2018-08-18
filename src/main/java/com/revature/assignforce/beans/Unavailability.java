@@ -52,13 +52,13 @@ public class Unavailability {
 	private Integer room;
 
 
-	public Unavailability(int id, String description, LocalDate endDate, LocalDate startDate,  Integer room) {
+	public Unavailability(int id, String description, LocalDate endDate, LocalDate startDate, Integer room) {
 		super();
 		this.id = id;
 		this.description = description;
 		this.endDate = endDate;
 		this.startDate = startDate;
-		//this.notroom = notroom;
+		//this.roomObject = notroom;
 		this.room = room;
 	}
 
@@ -108,6 +108,8 @@ public class Unavailability {
 	public void setRoomObject(Room room) {
 		this.roomObject = room;
 	}
+
+	public Room getRoomObject(){return this.roomObject;}
 
 
 	public Integer getRoom() {
