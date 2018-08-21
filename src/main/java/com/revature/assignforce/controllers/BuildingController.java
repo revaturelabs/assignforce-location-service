@@ -21,7 +21,6 @@ import com.revature.assignforce.beans.Location;
 import com.revature.assignforce.service.BuildingService;
 import com.revature.assignforce.service.LocationService;
 
-
 @RestController
 @RequestMapping("/building")
 public class BuildingController {

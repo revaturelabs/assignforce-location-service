@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.assignforce.beans.Location;
 import com.revature.assignforce.service.LocationService;
 
-
 @RestController
 public class LocationController {
 

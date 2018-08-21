@@ -21,7 +21,6 @@ import com.revature.assignforce.beans.Room;
 import com.revature.assignforce.service.BuildingService;
 import com.revature.assignforce.service.RoomService;
 
-
 @RestController
 @RequestMapping("/room")
 public class RoomController {
