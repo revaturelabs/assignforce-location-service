@@ -105,7 +105,7 @@ public class LocationControllerTest {
 		l1.setName("Phoenix");
 		l1.setState("AZ");
 		Mockito.when(locationRepository.save(l1)).thenReturn(l1);
-		ResponseEntity<Location> reTest = locationController.update(l1);
+		ResponseEntity<Location> reTest = locationController.update(l1.getId(), l1);
 		assertTrue(reTest.getBody().getState().equals("AZ") && reTest.getStatusCode() == HttpStatus.CREATED);
 	}
 	
@@ -115,7 +115,7 @@ public class LocationControllerTest {
 		l1.setCity("Phoenix");
 		l1.setName("Phoenix");
 		l1.setState("AZ");
-		ResponseEntity<Location> reTest = locationController.update(l1);
+		ResponseEntity<Location> reTest = locationController.update(l1.getId(), l1);
 		assertTrue(reTest.getStatusCode() == HttpStatus.BAD_REQUEST);
 	}
 	

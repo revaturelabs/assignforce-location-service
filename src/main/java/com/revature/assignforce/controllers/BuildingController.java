@@ -55,8 +55,8 @@ public class BuildingController {
 	}
 
 	// update
-	@PutMapping
-	public ResponseEntity<Building> update(@RequestBody Building a) {
+	@PutMapping(value = "{id}")
+	public ResponseEntity<Building> update(@PathVariable("id") int id, @RequestBody Building a) {
 		a = buildingService.update(a);
 		if (a == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

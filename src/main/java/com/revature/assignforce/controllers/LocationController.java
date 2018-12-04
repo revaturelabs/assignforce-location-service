@@ -49,8 +49,8 @@ public class LocationController {
 	}
 
 	// update
-	@PutMapping
-	public ResponseEntity<Location> update(@RequestBody Location a) {
+	@PutMapping(value = "{id}")
+	public ResponseEntity<Location> update(@PathVariable("id") int id, @RequestBody Location a) {
 		a = locationService.update(a);
 		if (a == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

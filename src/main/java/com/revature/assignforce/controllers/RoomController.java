@@ -55,8 +55,8 @@ public class RoomController {
 	}
 
 	// update
-	@PutMapping
-	public ResponseEntity<Room> update(@RequestBody Room a) {
+	@PutMapping(value = "{id}")
+	public ResponseEntity<Room> update(@PathVariable("id") int id, @RequestBody Room a) {
 		a = roomService.update(a);
 		if (a == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
