@@ -50,10 +50,10 @@ public class Building {
 	@Size(min = 1, max =128, message = "buildingName length must be between 1 and 128")
 	private String buildingName;
 	
-	@JsonIgnoreProperties
-	@ManyToOne(targetEntity=Location.class,fetch=FetchType.LAZY)
-	@JoinColumn(name="LOCATION_ID")
-	private Location location;  //these lines currently exist
+//	@JsonIgnoreProperties
+//	@ManyToOne(targetEntity=Location.class,fetch=FetchType.LAZY)
+//	@JoinColumn(name="LOCATION_ID")
+//	private Location location;  //these lines currently exist
 	
 	@Column(name="LOCATION_ID", updatable=false, insertable=false)
 	private Integer address;
