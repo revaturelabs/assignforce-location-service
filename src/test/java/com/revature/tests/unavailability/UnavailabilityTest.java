@@ -24,47 +24,47 @@ public class UnavailabilityTest {
 
     @Test
     public void UnavailabilityTest1() {
-        Unavailability u1 = new Unavailability();
-        assertNotNull(u1);
+        Unavailability u = new Unavailability();
+        assertNotNull(u);
     }
 
     @Test
     public void getSetIdTest(){
         int id = 1;
-        Unavailability u1 = new Unavailability();
-        u1.setId(id);
-        assertTrue(u1.getId() == id);
+        Unavailability u = new Unavailability();
+        u.setId(id);
+        assertTrue(u.getId() == id);
     }
 
     @Test
     public void getSetDescriptionTest(){
         String desc = "Already booked";
-        Unavailability u1 = new Unavailability();
-        u1.setDescription(desc);
-        assertTrue(u1.getDescription().equals(desc));
+        Unavailability u = new Unavailability();
+        u.setDescription(desc);
+        assertTrue(u.getDescription().equals(desc));
     }
 
     @Test
     public void getSetStartDateTest(){
-        Unavailability u1 = new Unavailability();
+        Unavailability u = new Unavailability();
         LocalDate date = LocalDate.parse("2018-06-11");
-        u1.setStartDate(date);
-        assertTrue(u1.getStartDate().isEqual(LocalDate.parse("2018-06-11")));
+        u.setStartDate(date);
+        assertTrue(u.getStartDate().isEqual(LocalDate.parse("2018-06-11")));
     }
 
     @Test
     public void getSetEndDateTest(){
-        Unavailability u1 = new Unavailability();
+        Unavailability u = new Unavailability();
         LocalDate date = LocalDate.parse("2018-08-17");
-        u1.setEndDate(date);
-        assertTrue(u1.getEndDate().isEqual(LocalDate.parse("2018-08-17")));
+        u.setEndDate(date);
+        assertTrue(u.getEndDate().isEqual(LocalDate.parse("2018-08-17")));
     }
 
     @Test
     public void getSetRoomTest() {
         int room = 1402;
-        Unavailability u1 = new Unavailability();
-        u1.setRoom(room);
-        assertTrue(u1.getRoom() == room);
+        Unavailability u = new Unavailability();
+        u.setRoom(room);
+        assertTrue(u.getRoom() == room);
     }
 }

@@ -70,11 +70,12 @@ public class LocationControllerTest {
 	
 	@Test
 	public void getByIdTestOk() {
-		Location l1 = new Location(5, "Reston", "Reston", "VA", true);
-		Optional<Location> op1 = Optional.ofNullable(l1);
-		Mockito.when(locationRepository.findById(5)).thenReturn(op1);
-		ResponseEntity<Location> reTest = locationController.getById(5);
-		assertTrue(reTest.getBody().getId() == 5 && reTest.getStatusCode() == HttpStatus.OK);
+		int id = 5;
+		Location l = new Location(id, "Reston", "Reston", "VA", true);
+		Optional<Location> op = Optional.ofNullable(l);
+		Mockito.when(locationRepository.findById(id)).thenReturn(op);
+		ResponseEntity<Location> reTest = locationController.getById(id);
+		assertTrue(reTest.getBody().getId() == id && reTest.getStatusCode() == HttpStatus.OK);
 	}
 	
 	@Test
@@ -85,37 +86,39 @@ public class LocationControllerTest {
 	
 	@Test
 	public void addTestCreated() {
-		Location l1 = new Location(8, "San Diego", "San Diego", "CA", true);
-		Mockito.when(locationRepository.save(l1)).thenReturn(l1);
-		ResponseEntity<Location> reTest = locationController.add(l1);
-		assertTrue(reTest.getBody().getId() == 8 && reTest.getStatusCode() == HttpStatus.CREATED);
+		int id = 8;
+		Location l = new Location(id, "San Diego", "San Diego", "CA", true);
+		Mockito.when(locationRepository.save(l)).thenReturn(l);
+		ResponseEntity<Location> reTest = locationController.add(l);
+		assertTrue(reTest.getBody().getId() == id && reTest.getStatusCode() == HttpStatus.CREATED);
 	}
 	
 	@Test
 	public void addTestBadRequest() {
-		Location l1 = new Location(13, "Scranton", "Scranton", "PA", false);
-		ResponseEntity<Location> reTest = locationController.add(l1);
+		Location l = new Location(13, "Scranton", "Scranton", "PA", false);
+		ResponseEntity<Location> reTest = locationController.add(l);
 		assertTrue(reTest.getStatusCode() == HttpStatus.BAD_REQUEST);
 	}
 	
 	@Test
 	public void updateTestOK() {
-		Location l1 = new Location(8, "San Diego", "San Diego", "CA", true);
-		l1.setCity("Phoenix");
-		l1.setName("Phoenix");
-		l1.setState("AZ");
-		Mockito.when(locationRepository.save(l1)).thenReturn(l1);
-		ResponseEntity<Location> reTest = locationController.update(l1);
-		assertTrue(reTest.getBody().getState().equals("AZ") && reTest.getStatusCode() == HttpStatus.CREATED);
+		String state = "AZ";
+		Location l = new Location(8, "San Diego", "San Diego", "CA", true);
+		l.setCity("Phoenix");
+		l.setName("Phoenix");
+		l.setState(state);
+		Mockito.when(locationRepository.save(l)).thenReturn(l);
+		ResponseEntity<Location> reTest = locationController.update(l);
+		assertTrue(reTest.getBody().getState().equals(state) && reTest.getStatusCode() == HttpStatus.CREATED);
 	}
 	
 	@Test
 	public void updateTestBadRequest() {
-		Location l1 = new Location(19, "San Diego", "San Diego", "CA", true);
-		l1.setCity("Phoenix");
-		l1.setName("Phoenix");
-		l1.setState("AZ");
-		ResponseEntity<Location> reTest = locationController.update(l1);
+		Location l = new Location(19, "San Diego", "San Diego", "CA", true);
+		l.setCity("Phoenix");
+		l.setName("Phoenix");
+		l.setState("AZ");
+		ResponseEntity<Location> reTest = locationController.update(l);
 		assertTrue(reTest.getStatusCode() == HttpStatus.BAD_REQUEST);
 	}
 	

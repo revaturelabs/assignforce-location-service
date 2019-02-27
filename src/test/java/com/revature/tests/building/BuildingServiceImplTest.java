@@ -54,35 +54,38 @@ public class BuildingServiceImplTest {
 
     @Test
     public void findByIdTest() {
-        Building b1 = new Building(4, true, "NEC", 2);
-        Optional<Building> op1 = Optional.ofNullable(b1);
-        Mockito.when(buildingRepository.findById(4)).thenReturn(op1);
+        String name = "NEC";
+        Building b = new Building(4, true, name, 2);
+        Optional<Building> op = Optional.ofNullable(b);
+        Mockito.when(buildingRepository.findById(4)).thenReturn(op);
         Optional<Building> lTest = buildingService.findById(4);
-        assertTrue(lTest.get().getBuildingName().equals("NEC"));
+        assertTrue(lTest.get().getBuildingName().equals(name));
     }
 
     @Test
     public void updateTest() {
-        Building b1 = new Building(4, false, "NEC", 1);
-        b1.setIsActive(true);
-        Mockito.when(buildingRepository.save(b1)).thenReturn(b1);
-        Building lTest = buildingService.update(b1);
+        Building b = new Building(4, false, "NEC", 1);
+        b.setIsActive(true);
+        Mockito.when(buildingRepository.save(b)).thenReturn(b);
+        Building lTest = buildingService.update(b);
         assertTrue(lTest.getIsActive());
     }
 
     @Test
     public void createTest() {
-        Building b1 = new Building(5, true,"Business", 6);
-        Mockito.when(buildingRepository.save(b1)).thenReturn(b1);
-        Building lTest = buildingService.create(b1);
-        assertTrue(lTest.getBuildingId() == 5);
+        int id = 5;
+        Building b = new Building(id, true,"Business", 6);
+        Mockito.when(buildingRepository.save(b)).thenReturn(b);
+        Building lTest = buildingService.create(b);
+        assertTrue(lTest.getBuildingId() == id);
     }
 
     @Test
     public void deleteTest() {
-        Mockito.doNothing().when(buildingRepository).deleteById(8);
-        buildingService.delete(8);
-        Optional<Building> opTest = buildingService.findById(8);
+        int id = 8;
+        Mockito.doNothing().when(buildingRepository).deleteById(id);
+        buildingService.delete(id);
+        Optional<Building> opTest = buildingService.findById(id);
         assertFalse(opTest.isPresent());
     }
 }

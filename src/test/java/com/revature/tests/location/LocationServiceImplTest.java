@@ -61,35 +61,38 @@ public class LocationServiceImplTest {
 	
 	@Test
 	public void findByIdTest() {
-		Location l1 = new Location(4, "Chicago", "Chicago", "IL", false);
-		Optional<Location> op1 = Optional.ofNullable(l1);
-		Mockito.when(locationRepository.findById(4)).thenReturn(op1);
+		String name = "Chicago";
+		Location l = new Location(4, name, "Chicago", "IL", false);
+		Optional<Location> op = Optional.ofNullable(l);
+		Mockito.when(locationRepository.findById(4)).thenReturn(op);
 		Optional<Location> lTest = locationService.findById(4);
-		assertTrue(lTest.get().getName().equals("Chicago"));
+		assertTrue(lTest.get().getName().equals(name));
 	}
 	
 	@Test
 	public void updateTest() {
-		Location l1 = new Location(4, "Chicago", "Chicago", "IL", false);
-		l1.setIsActive(true);
-		Mockito.when(locationRepository.save(l1)).thenReturn(l1);
-		Location lTest = locationService.update(l1);
+		Location l = new Location(4, "Chicago", "Chicago", "IL", false);
+		l.setIsActive(true);
+		Mockito.when(locationRepository.save(l)).thenReturn(l);
+		Location lTest = locationService.update(l);
 		assertTrue(lTest.getIsActive());
 	}
 	
 	@Test
 	public void createTest() {
-		Location l1 = new Location(5, "New York", "New York", "NY", true);
-		Mockito.when(locationRepository.save(l1)).thenReturn(l1);
-		Location lTest = locationService.create(l1);
-		assertTrue(lTest.getId() == 5);
+		int id = 5;
+		Location l = new Location(id, "New York", "New York", "NY", true);
+		Mockito.when(locationRepository.save(l)).thenReturn(l);
+		Location lTest = locationService.create(l);
+		assertTrue(lTest.getId() == id);
 	}
 	
 	@Test
 	public void deleteTest() {
-		Mockito.doNothing().when(locationRepository).deleteById(8);
-		locationService.delete(8);
-		Optional<Location> opTest = locationService.findById(8);
+		int id = 8;
+		Mockito.doNothing().when(locationRepository).deleteById(id);
+		locationService.delete(id);
+		Optional<Location> opTest = locationService.findById(id);
 		assertFalse(opTest.isPresent());
 	}
 
