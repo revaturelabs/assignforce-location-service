@@ -119,4 +119,16 @@ public class Unavailability {
 	public void setRoom(Integer room) {
 		this.room = room;
 	}
+
+	@Override
+	public String toString() {
+		return "Unavailability{" +
+				"id=" + id +
+				", description='" + description + '\'' +
+				", endDate=" + endDate +
+				", startDate=" + startDate +
+				", roomObject=" + roomObject +
+				", room=" + room +
+				'}';
+	}
 }

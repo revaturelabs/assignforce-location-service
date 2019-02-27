@@ -30,16 +30,18 @@ public class UnavailabilityTest {
 
     @Test
     public void getSetIdTest(){
+        int id = 1;
         Unavailability u1 = new Unavailability();
-        u1.setId(1);
-        assertTrue(u1.getId() == 1);
+        u1.setId(id);
+        assertTrue(u1.getId() == id);
     }
 
     @Test
     public void getSetDescriptionTest(){
+        String desc = "Already booked";
         Unavailability u1 = new Unavailability();
-        u1.setDescription("Already booked");
-        assertTrue(u1.getDescription().equals("Already booked"));
+        u1.setDescription(desc);
+        assertTrue(u1.getDescription().equals(desc));
     }
 
     @Test
@@ -60,8 +62,9 @@ public class UnavailabilityTest {
 
     @Test
     public void getSetRoomTest() {
+        int room = 1402;
         Unavailability u1 = new Unavailability();
-        u1.setRoom(1402);
-        assertTrue(u1.getRoom() == 1402);
+        u1.setRoom(room);
+        assertTrue(u1.getRoom() == room);
     }
 }
