@@ -97,34 +97,29 @@ public class UnavailabilityServiceImplTest {
         assertFalse(opTest.isPresent());
     }
 
-//    @Test
-//    public void addUnavailabilityTest(){
-//        Unavailability u1 = new Unavailability(1, "Java", LocalDate.parse("2018-08-16"), LocalDate.parse("2018-06-11"), 5);
-//        Room r1 = new Room(4, "Staging", 2);
-//        Optional<Room> op1 = Optional.ofNullable(r1);
-//        Mockito.when(roomRepository.findById(4)).thenReturn(op1);
-//        Optional<Unavailability> lTest = Optional.ofNullable(unavailabilityService.addUnavailability(u1, 4));
-//        assertEquals(4, lTest.get().getRoomObject().getId());
-//    }
+    @Test
+    public void addUnavailabilityTest(){
+        Unavailability u1 = new Unavailability(1, "Java", LocalDate.parse("2018-08-16"), LocalDate.parse("2018-06-11"), 4);
+        Room r1 = new Room(4, "Staging", 2);
+        Optional<Room> op1 = Optional.ofNullable(r1);
+        Mockito.when(roomRepository.findById(4)).thenReturn(op1);
+        Unavailability test = u1;
+        test.setRoomObject(roomRepository.findById(4).orElse(null));
+        Mockito.when(unavailabilityService.addUnavailability(u1, 4)).thenReturn(test);
+        Optional<Unavailability> lTest = Optional.ofNullable(unavailabilityService.addUnavailability(u1, 4));
+        assertEquals(4, lTest.get().getRoomObject().getId());
+    }
 
-    // Same as above but passes when repo is not mocked
-    // - Joe Milne
-
-//    @Test
-//    public void addUnavailabilityTest(){
-//        int id = 4;
-//        Unavailability u1 = new Unavailability(1, "Java", LocalDate.parse("2018-08-16"), LocalDate.parse("2018-06-11"), 5);
-//        Room r1 = new Room(id, "Staging", 2);
-//        Optional<Room> op1 = Optional.ofNullable(r1);
-//        Mockito.when(roomRepository.findById(4)).thenReturn(op1);
-//        Optional<Unavailability> lTest = Optional.ofNullable(unavailabilityService.addUnavailability(u1, id));
-//        assertEquals(Optional.empty(), lTest);
-//    }
-
-//    @Test
-//    public void updateUnavailabilityTest(){
-//        int id = 4;
-//        Unavailability u = new Unavailability(1, "Java", LocalDate.parse("2018-08-16"), LocalDate.parse("2018-6-11"), 5);
-//        Room r = new Room()
-//    }
+    @Test
+    public void updateUnavailabilityTest(){
+        Unavailability u = new Unavailability(1, "Test", LocalDate.parse("2018-07-16"), LocalDate.parse("2018-06-11"), 4);
+        Room r = new Room(4, "Staging", 2);
+        Optional<Room> rOpt = Optional.ofNullable(r);
+        Mockito.when(roomRepository.findById(4)).thenReturn(rOpt);
+        Unavailability test = u;
+        test.setRoomObject(roomRepository.findById(4).orElse(null));
+        Mockito.when(unavailabilityService.updateUnavailability(u, 4)).thenReturn(test);
+        Optional<Unavailability> testOpt = Optional.ofNullable(unavailabilityService.updateUnavailability(u, 4));
+        assertEquals(4, testOpt.get().getRoomObject().getId());
+    }
 }
