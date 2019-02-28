@@ -26,42 +26,46 @@ public class LocationTest {
 
 	@Test
 	public void locationTest1() {
-		Location ll = new Location();
-		assertNotNull(ll);
+		Location l = new Location();
+		assertNotNull(l);
 	}
 
 	@Test
 	public void getSetIdTest() {
-		Location l1 = new Location();
-		l1.setId(32);
-		assertTrue(l1.getId() == 32);
+		int id = 32;
+		Location l = new Location();
+		l.setId(id);
+		assertTrue(l.getId() == id);
 	}
 	
 	@Test
 	public void getSetNameTest() {
-		Location l1 = new Location();
-		l1.setName("HQ");
-		assertTrue(l1.getName().equals("HQ"));
+		String name = "HQ";
+		Location l = new Location();
+		l.setName(name);
+		assertTrue(l.getName().equals(name));
 	}
 	
 	@Test
 	public void getSetCityTest() {
-		Location l1 = new Location();
-		l1.setCity("Reston");
-		assertTrue(l1.getCity().equals("Reston"));
+		String city = "Reston";
+		Location l = new Location();
+		l.setCity(city);
+		assertTrue(l.getCity().equals(city));
 	}
 	
 	@Test
 	public void getSetStateTest() {
-		Location l1 = new Location();
-		l1.setState("VA");
-		assertTrue(l1.getState().equals("VA"));
+		String state = "VA";
+		Location l = new Location();
+		l.setState(state);
+		assertTrue(l.getState().equals(state));
 	}
 	
 	@Test
 	public void getSetIsActiveTest() {
-		Location l1 = new Location();
-		l1.setIsActive(true);
-		assertTrue(l1.getIsActive());
+		Location l = new Location();
+		l.setIsActive(true);
+		assertTrue(l.getIsActive());
 	}
 }
