@@ -58,6 +58,8 @@ public class Building {
 	@Column(name="LOCATION_ID", updatable=false, insertable=false)
 	private Integer address;
 
+	@JsonIgnore
+	private int id;
 
 	public Building() {
 		super();
