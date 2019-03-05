@@ -21,7 +21,7 @@ pipeline {
 
         stage('Quality Check') {
             parallel {
-                stage('Unit Tests') {
+                /*stage('Unit Tests') {
                   steps {
                     script {
                         try {
@@ -34,7 +34,7 @@ pipeline {
                         }
                     }
                   }
-                }
+                }*/
                 stage('Code Scan') {
                   steps {
                     script {

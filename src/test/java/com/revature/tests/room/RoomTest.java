@@ -47,29 +47,32 @@ public class RoomTest {
 	
 	@Test
 	public void roomTest1() {
-		Room r1 = new Room();
-		assertNotNull(r1);
+		Room r = new Room();
+		assertNotNull(r);
 	}
 	
 	@Test
 	public void getSetIdTest() {
-		Room r1 = new Room();
-		r1.setId(59);
-		assertTrue(r1.getId() == 59);
+		int id = 59;
+		Room r = new Room();
+		r.setId(id);
+		assertTrue(r.getId() == id);
 	}
 	
 	@Test
 	public void getSetNameTest() {
-		Room r1 = new Room();
-		r1.setRoomName("BlueRoom");
-		assertTrue(r1.getRoomName().equals("BlueRoom"));
+		String name = "BlueRoom";
+		Room r = new Room();
+		r.setRoomName(name);
+		assertTrue(r.getRoomName().equals(name));
 	}
 
 	@Test
 	public void getSetBuildingTest() {
-		Room b1 = new Room();
-		b1.setBuilding(5);
-		assertTrue(b1.getBuilding() == 5);
+		int bld = 5;
+		Room b = new Room();
+		b.setBuilding(bld);
+		assertTrue(b.getBuilding() == bld);
 	}
 
 	/**
@@ -79,11 +82,11 @@ public class RoomTest {
 	
 	@Test
 	public void roomNameNotNull() {
-		Room r1 = new Room();
-		r1.setRoomName(null);
+		Room r = new Room();
+		r.setRoomName(null);
 		
 	    Set<ConstraintViolation<Room>> constraintViolations =
-	      validator.validate(r1);
+	      validator.validate(r);
 	 
 	    assertEquals(1, constraintViolations.size());
 	    assertEquals(
@@ -102,11 +105,11 @@ public class RoomTest {
 	@Test
 	public void roomNameGreaterThanEmptyString() {
 		
-		Room r1 = new Room();
-		r1.setRoomName("");
+		Room r = new Room();
+		r.setRoomName("");
 		
 		Set<ConstraintViolation<Room>> constraintViolations =
-			      validator.validate(r1);
+			      validator.validate(r);
  
 		assertEquals(1, constraintViolations.size());
 		assertEquals(
@@ -123,14 +126,14 @@ public class RoomTest {
 	
 	@Test
 	public void roomNameSizeLessThan129() {
-		Room r1 = new Room();
-		r1.setRoomName("1234567890123456789012345678901234567890"
+		Room r = new Room();
+		r.setRoomName("1234567890123456789012345678901234567890"
 				+ "1234567890123456789012345678901234567890" 
 				+ "1234567890123456789012345678901234567890" 
 				+ "123456789");
 		
 		Set<ConstraintViolation<Room>> constraintViolations =
-			      validator.validate(r1);
+			      validator.validate(r);
 
 		assertEquals(1, constraintViolations.size());
 		assertEquals(
