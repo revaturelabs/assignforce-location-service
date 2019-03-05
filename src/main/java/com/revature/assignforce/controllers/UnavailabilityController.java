@@ -22,7 +22,6 @@ import com.revature.assignforce.beans.Unavailability;
 import com.revature.assignforce.service.RoomService;
 import com.revature.assignforce.service.UnavailabilityService;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/unavailabilities")
 public class UnavailabilityController {
