@@ -48,16 +48,16 @@ public class UnavailabilityServiceImpl  implements UnavailabilityService {
 	}
 	
 	public Unavailability addUnavailability(Unavailability t, int roomId) {
-		Room theRoom = (roomService.findById(roomId).orElse(null));
-		t.setRoomObject(theRoom);
+//		Room theRoom = (roomService.findById(roomId).orElse(null));
+		t.setRoom(roomId);
 
 		return create(t);
 
 	}
 	
 	public Unavailability updateUnavailability(Unavailability t, int roomId) {
-		Room theRoom = (roomService.findById(roomId).orElse(null));
-		t.setRoomObject(theRoom);
+//		Room theRoom = (roomService.findById(roomId).orElse(null));
+		t.setRoom(roomId);
 		
 		return update(t);
 		
