@@ -38,12 +38,12 @@ public class Room {
 	@Size(min = 1, max = 128, message = "RoomName size must be between 1 and 128")
 	private String roomName;
 
-	@JsonIgnoreProperties
-	@ManyToOne(targetEntity=Building.class,fetch=FetchType.LAZY)
-	@JoinColumn(name = "BUILDING_ID")
-	private Building buildingObject;
+//	@JsonIgnoreProperties
+//	@ManyToOne(targetEntity=Building.class,fetch=FetchType.LAZY)
+//	@JoinColumn(name = "BUILDING_ID")
+//	private Building buildingObject;
 
-	@Column(name="BUILDING_ID", updatable=false, insertable=false)
+	@Column(name="BUILDING_ID")
 	private Integer building;
 
 
