@@ -47,18 +47,14 @@ public class UnavailabilityServiceImpl  implements UnavailabilityService {
 		unavailabilityRepository.deleteById(id);
 	}
 	
-	public Unavailability addUnavailability(Unavailability t, int roomId) {
+	public Unavailability addUnavailability(Unavailability t) {
 //		Room theRoom = (roomService.findById(roomId).orElse(null));
-		t.setRoom(roomId);
-
 		return create(t);
 
 	}
 	
-	public Unavailability updateUnavailability(Unavailability t, int roomId) {
+	public Unavailability updateUnavailability(Unavailability t) {
 //		Room theRoom = (roomService.findById(roomId).orElse(null));
-		t.setRoom(roomId);
-		
 		return update(t);
 		
 	}

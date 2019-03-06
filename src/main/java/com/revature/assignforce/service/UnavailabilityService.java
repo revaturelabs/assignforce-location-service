@@ -20,9 +20,9 @@ public interface UnavailabilityService {
 
 	void delete(int id);
 	
-	public Unavailability addUnavailability(Unavailability t, int roomId);
+	public Unavailability addUnavailability(Unavailability t);
 	
-	public Unavailability updateUnavailability(Unavailability t, int roomId);
+	public Unavailability updateUnavailability(Unavailability t);
 
 
 }
