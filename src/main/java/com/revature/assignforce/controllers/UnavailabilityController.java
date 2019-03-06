@@ -72,7 +72,11 @@ public class UnavailabilityController {
 		
 		//find the room to add to Unavailability object
 		Room theRoom = (roomService.findById(roomId).orElse(null));
-		a.setRoomObject(theRoom);
+
+        if (theRoom == null)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+		a.setRoom(roomId);
 		
 		a = unavailabilityService.update(a);
 		if (a == null)
