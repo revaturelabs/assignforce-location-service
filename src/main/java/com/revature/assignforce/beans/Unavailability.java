@@ -42,13 +42,13 @@ public class Unavailability {
 	//The angular side of the application does not accept a Room object so I need to use the @JsonIgnoreProperties for the roomObject field
 	// instead what gets sent to the front-end is the room field which holds the primary key of the room that pertains to 
 	// the Unavailability
-	@JsonIgnoreProperties
-	@ManyToOne(targetEntity=Room.class,fetch=FetchType.LAZY)
-	@JoinColumn(name = "ROOMS_ID")
-	private Room roomObject;
+//	@JsonIgnoreProperties
+//	@ManyToOne(targetEntity=Room.class,fetch=FetchType.LAZY)
+//	@JoinColumn(name = "ROOMS_ID")
+//	private Room roomObject;
 
 	
-	@Column(name="ROOMS_ID", updatable=false, insertable=false)
+	@Column(name="ROOMS_ID")
 	private Integer room;
 
 
@@ -64,7 +64,6 @@ public class Unavailability {
 
 	public Unavailability() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 
@@ -105,11 +104,11 @@ public class Unavailability {
 
 
 
-	public void setRoomObject(Room room) {
-		this.roomObject = room;
-	}
-
-	public Room getRoomObject(){return this.roomObject;}
+//	public void setRoomObject(Room room) {
+//		this.roomObject = room;
+//	}
+//
+//	public Room getRoomObject(){return this.roomObject;}
 
 
 	public Integer getRoom() {
@@ -127,7 +126,7 @@ public class Unavailability {
 				", description='" + description + '\'' +
 				", endDate=" + endDate +
 				", startDate=" + startDate +
-				", roomObject=" + roomObject +
+//				", roomObject=" + roomObject +
 				", room=" + room +
 				'}';
 	}
