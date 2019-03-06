@@ -54,7 +54,7 @@ public class Building {
 	@JoinColumn(name="LOCATION_ID")
 	private Location location;  //these lines currently exist
 	
-	@Column(name="LOCATION_ID", updatable=false, insertable=false)
+	@Column(name="LOCATION_ID")
 	private Integer address;
 
 	@JsonIgnoreProperties
