@@ -51,35 +51,40 @@ public class RoomServiceImplTest {
 
     @Test
     public void findByIdTest() {
-        Room r1 = new Room(4, "Staging", 2);
-        Optional<Room> op1 = Optional.ofNullable(r1);
-        Mockito.when(roomRepository.findById(4)).thenReturn(op1);
-        Optional<Room> lTest = roomService.findById(4);
-        assertEquals("Staging", lTest.get().getRoomName());
+        String name = "Staging";
+        int id = 4;
+        Room r = new Room(id, name, 2);
+        Optional<Room> op1 = Optional.ofNullable(r);
+        Mockito.when(roomRepository.findById(id)).thenReturn(op1);
+        Optional<Room> lTest = roomService.findById(id);
+        assertEquals(name, lTest.get().getRoomName());
     }
 
     @Test
     public void updateTest() {
-        Room r1 = new Room(4, "HR", 1);
-        r1.setRoomName("HR Office");
-        Mockito.when(roomRepository.save(r1)).thenReturn(r1);
-        Room lTest = roomService.update(r1);
-        assertEquals("HR Office", lTest.getRoomName());
+        String change = "HR Office";
+        Room r = new Room(4, "HR", 1);
+        r.setRoomName(change);
+        Mockito.when(roomRepository.save(r)).thenReturn(r);
+        Room lTest = roomService.update(r);
+        assertEquals(change, lTest.getRoomName());
     }
 
     @Test
     public void createTest() {
-        Room r1 = new Room(5,"Planning", 6);
-        Mockito.when(roomRepository.save(r1)).thenReturn(r1);
-        Room lTest = roomService.create(r1);
-        assertEquals(5, lTest.getId());
+        int id = 5;
+        Room r = new Room(id,"Planning", 6);
+        Mockito.when(roomRepository.save(r)).thenReturn(r);
+        Room lTest = roomService.create(r);
+        assertEquals(id, lTest.getId());
     }
 
     @Test
     public void deleteTest() {
-        Mockito.doNothing().when(roomRepository).deleteById(8);
-        roomService.delete(8);
-        Optional<Room> opTest = roomService.findById(8);
+        int id = 8;
+        Mockito.doNothing().when(roomRepository).deleteById(id);
+        roomService.delete(id);
+        Optional<Room> opTest = roomService.findById(id);
         assertFalse(opTest.isPresent());
     }
 }

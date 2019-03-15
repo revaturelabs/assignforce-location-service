@@ -56,24 +56,19 @@ public class UnavailabilityController {
 	 set the roomObject to finding the room by id and then setting roomObject to the object returned (which will also change the room 
 	field in Unavailability to the primary key of the room) 
 	*/
-	@PostMapping(value = "{roomId}")
-	public ResponseEntity<Unavailability> add(@PathVariable("roomId") int roomId, @RequestBody Unavailability a) {
+	@PostMapping
+	public ResponseEntity<Unavailability> add(@RequestBody Unavailability a) {
 	
 		//find by room to add to Unavailability object
 		
-		a = unavailabilityService.addUnavailability(a, roomId);
+		a = unavailabilityService.addUnavailability(a);
 		if (a == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		return new ResponseEntity<>(a, HttpStatus.CREATED);
 	}
 
-	@PutMapping(value = "{roomId}")
-	public ResponseEntity<Unavailability> update(@PathVariable("roomId") int roomId, @RequestBody Unavailability a) {
-		
-		//find the room to add to Unavailability object
-		Room theRoom = (roomService.findById(roomId).orElse(null));
-		a.setRoomObject(theRoom);
-		
+	@PutMapping(value = "{uaId}")
+	public ResponseEntity<Unavailability> update(@PathVariable("uaId") int uaId, @RequestBody Unavailability a) {
 		a = unavailabilityService.update(a);
 		if (a == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

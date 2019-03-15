@@ -16,8 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Min;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -50,14 +49,17 @@ public class Building {
 	@Size(min = 1, max =128, message = "buildingName length must be between 1 and 128")
 	private String buildingName;
 	
-	@JsonIgnoreProperties
-	@ManyToOne(targetEntity=Location.class,fetch=FetchType.LAZY)
-	@JoinColumn(name="LOCATION_ID")
-	private Location location;  //these lines currently exist
+//	@JsonIgnoreProperties
+//	@ManyToOne(targetEntity=Location.class,fetch=FetchType.LAZY)
+//	@JoinColumn(name="LOCATION_ID")
+//	private Location address;  //these lines currently exist
 	
-	@Column(name="LOCATION_ID", updatable=false, insertable=false)
+	@Column(name="LOCATION_ID")
 	private Integer address;
 
+	@JsonIgnoreProperties
+	@Transient
+	private int id;
 
 	public Building() {
 		super();

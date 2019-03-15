@@ -51,36 +51,39 @@ public class BuildingTest {
 
 	@Test
 	public void buildingTest1() {
-		Building b1 = new Building();
-		assertNotNull(b1);
+		Building b = new Building();
+		assertNotNull(b);
 	}
 
 	@Test
 	public void getSetIdTest() {
-		Building b1 = new Building();
-		b1.setBuildingId(96);
-		assertTrue(b1.getBuildingId() == 96);
+		int id = 96;
+		Building b = new Building();
+		b.setBuildingId(id);
+		assertTrue(b.getBuildingId() == id);
 	}
 	
 	@Test
 	public void getSetIsActiveTest() {
-		Building b1 = new Building();
-		b1.setIsActive(true);
-		assertTrue(b1.getIsActive());
+		Building b = new Building();
+		b.setIsActive(true);
+		assertTrue(b.getIsActive());
 	}
 	
 	@Test
 	public void getSetNameTest() {
-		Building b1 = new Building();
-		b1.setBuildingName("HQ");
-		assertTrue(b1.getBuildingName().equals("HQ"));
+		String name = "HQ";
+		Building b = new Building();
+		b.setBuildingName(name);
+		assertTrue(b.getBuildingName().equals(name));
 	}
 
 	@Test
 	public void getSetAddressTest() {
-		Building b1 = new Building();
-		b1.setAddress(5);
-		assertTrue(b1.getAddress() == 5);
+		int add = 5;
+		Building b = new Building();
+		b.setAddress(add);
+		assertTrue(b.getAddress() == add);
 	}
 
 //	@Test
@@ -114,11 +117,11 @@ public class BuildingTest {
 	
 	@Test
 	public void buildingNameNotNull() {
-		Building b1 = new Building();
-		b1.setBuildingName(null);
+		Building b = new Building();
+		b.setBuildingName(null);
 		
 	    Set<ConstraintViolation<Building>> constraintViolations =
-	  	      validator.validate(b1);
+	  	      validator.validate(b);
 
 	  	assertEquals(1, constraintViolations.size());
 	  	assertEquals(
@@ -135,11 +138,11 @@ public class BuildingTest {
 	
 	@Test
 	public void BuildingNameSizeGreaterThanEmptyString() {
-		Building b1 = new Building();
-		b1.setBuildingName("");
+		Building b = new Building();
+		b.setBuildingName("");
 		
 		Set<ConstraintViolation<Building>> constraintViolations =
-		  	      validator.validate(b1);
+		  	      validator.validate(b);
 
 		assertEquals(1, constraintViolations.size());
 		assertEquals(
@@ -156,14 +159,14 @@ public class BuildingTest {
 	
 	@Test
 	public void BuildingSizeLessThan129() {
-		Building b1 = new Building();
-		b1.setBuildingName("1234567890123456789012345678901234567890"
+		Building b = new Building();
+		b.setBuildingName("1234567890123456789012345678901234567890"
 				+ "1234567890123456789012345678901234567890"
 				+ "1234567890123456789012345678901234567890"
 				+ "123456789");
 		
 		Set<ConstraintViolation<Building>> constraintViolations =
-		  	      validator.validate(b1);
+		  	      validator.validate(b);
 
 		assertEquals(1, constraintViolations.size());
 		assertEquals(

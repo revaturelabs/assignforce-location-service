@@ -55,7 +55,7 @@ public class RoomController {
 	}
 
 	// update
-	@PutMapping
+	@PutMapping("{id}")
 	public ResponseEntity<Room> update(@RequestBody Room a) {
 		a = roomService.update(a);
 		if (a == null)

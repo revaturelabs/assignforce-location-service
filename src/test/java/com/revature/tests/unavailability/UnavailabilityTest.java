@@ -24,44 +24,47 @@ public class UnavailabilityTest {
 
     @Test
     public void UnavailabilityTest1() {
-        Unavailability u1 = new Unavailability();
-        assertNotNull(u1);
+        Unavailability u = new Unavailability();
+        assertNotNull(u);
     }
 
     @Test
     public void getSetIdTest(){
-        Unavailability u1 = new Unavailability();
-        u1.setId(1);
-        assertTrue(u1.getId() == 1);
+        int id = 1;
+        Unavailability u = new Unavailability();
+        u.setId(id);
+        assertTrue(u.getId() == id);
     }
 
     @Test
     public void getSetDescriptionTest(){
-        Unavailability u1 = new Unavailability();
-        u1.setDescription("Already booked");
-        assertTrue(u1.getDescription().equals("Already booked"));
+        String desc = "Already booked";
+        Unavailability u = new Unavailability();
+        u.setDescription(desc);
+        assertTrue(u.getDescription().equals(desc));
     }
 
     @Test
     public void getSetStartDateTest(){
-        Unavailability u1 = new Unavailability();
+        Unavailability u = new Unavailability();
         LocalDate date = LocalDate.parse("2018-06-11");
-        u1.setStartDate(date);
-        assertTrue(u1.getStartDate().isEqual(LocalDate.parse("2018-06-11")));
+        u.setStartDate(date);
+        assertTrue(u.getStartDate().isEqual(LocalDate.parse("2018-06-11")));
     }
 
     @Test
     public void getSetEndDateTest(){
-        Unavailability u1 = new Unavailability();
+        Unavailability u = new Unavailability();
         LocalDate date = LocalDate.parse("2018-08-17");
-        u1.setEndDate(date);
-        assertTrue(u1.getEndDate().isEqual(LocalDate.parse("2018-08-17")));
+        u.setEndDate(date);
+        assertTrue(u.getEndDate().isEqual(LocalDate.parse("2018-08-17")));
     }
 
     @Test
     public void getSetRoomTest() {
-        Unavailability u1 = new Unavailability();
-        u1.setRoom(1402);
-        assertTrue(u1.getRoom() == 1402);
+        int room = 1402;
+        Unavailability u = new Unavailability();
+        u.setRoom(room);
+        assertTrue(u.getRoom() == room);
     }
 }
