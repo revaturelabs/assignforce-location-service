@@ -20,22 +20,22 @@ public class Event {
 	@SequenceGenerator(name = "Event_ID", sequenceName = "Event_ID_seq", allocationSize = 1)
 	@Column(name = "Event_ID")
 	private int id;
-	
+
 	@Column(name = "END_DATE")
 	@NotNull(message = "endDate must not be null")
 	private LocalDate endDate;
-	
+
 	@Column(name = "START_DATE")
 	@NotNull(message = "startDate must not be null")
 	private LocalDate startDate;
-	
+
 	@Column(name = "NAME")
 	private String name;
-	
+
 	@Column(name = "CREATED_DATE")
 	@NotNull(message = "createdDate must not be null")
 	private LocalDate createdDate;
-	
+
 	@Column(name = "ROOM_ID")
 	private Integer roomID;
 
@@ -44,8 +44,8 @@ public class Event {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Event(int id, @NotNull(message = "endDate must not be null") LocalDate endDate,
-			@NotNull(message = "startDate must not be null") LocalDate startDate, String name,
+	public Event(int id, @NotNull(message = "startDate must not be null") LocalDate startDate,
+			@NotNull(message = "endDate must not be null") LocalDate endDate, String name,
 			@NotNull(message = "createdDate must not be null") LocalDate createdDate, Integer roomID) {
 		super();
 		this.id = id;
@@ -161,5 +161,5 @@ public class Event {
 		return "Event [id=" + id + ", endDate=" + endDate + ", startDate=" + startDate + ", name=" + name
 				+ ", createdDate=" + createdDate + ", roomID=" + roomID + "]";
 	}
-	
+
 }

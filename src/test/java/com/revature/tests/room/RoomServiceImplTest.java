@@ -1,10 +1,13 @@
 package com.revature.tests.room;
 
 
-import com.revature.assignforce.beans.Room;
-import com.revature.assignforce.repos.RoomRepository;
-import com.revature.assignforce.service.RoomService;
-import com.revature.assignforce.service.RoomServiceImpl;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -14,11 +17,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.Assert.*;
+import com.revature.assignforce.beans.Room;
+import com.revature.assignforce.repos.RoomRepository;
+import com.revature.assignforce.service.RoomService;
+import com.revature.assignforce.service.RoomServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
