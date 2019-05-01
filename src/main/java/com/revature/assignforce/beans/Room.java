@@ -37,6 +37,11 @@ public class Room {
 	@NotNull(message = "roomName must not be null")
 	@Size(min = 1, max = 128, message = "RoomName size must be between 1 and 128")
 	private String roomName;
+	
+	@Column(name = "Room_Capacity")
+	@NotNull(message = "roomCapacity must not be null")
+	@Size(min = 25, message = "RoomCapacity size must be more than 25")
+	private int roomCapacity;
 
 //	@JsonIgnoreProperties
 //	@ManyToOne(targetEntity=Building.class,fetch=FetchType.LAZY)
@@ -52,10 +57,11 @@ public class Room {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Room(int id, String roomName, Integer building) {
+	public Room(int id, String roomName, Integer roomCapacity, Integer building) {
 		super();
 		this.id = id;
 		this.roomName = roomName;
+		this.roomCapacity = roomCapacity;
 		//this.buildingObject = notbuilding;
 		this.building = building;
 	}
@@ -83,12 +89,17 @@ public class Room {
 		this.roomName = roomName;
 	}
 
-
-
 //	public void setNotbuilding(Building notbuilding) {
 //		this.buildingObject = notbuilding;
 //	}
 
+	public int getRoomCapacity() {
+		return roomCapacity;
+	}
+
+	public void setRoomCapacity(int roomCapacity) {
+		this.roomCapacity = roomCapacity;
+	}
 
 	public Integer getBuilding() {
 		return building;
