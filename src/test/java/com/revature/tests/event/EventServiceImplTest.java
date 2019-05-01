@@ -93,7 +93,7 @@ public class EventServiceImplTest {
 		LocalDate s3 = LocalDate.now();
 		
 		int id = 10;
-		Event e = new Event(1, s1, s2, "Name", s3, 2);
+		Event e = new Event(id, s1, s2, "Name", s3, 2);
 		Mockito.when(eventRepository.save(e)).thenReturn(e);
 		Event test = eventService.create(e);
 		assertEquals(id, test.getId());
