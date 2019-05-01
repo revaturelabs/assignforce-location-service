@@ -52,8 +52,8 @@ public class UnavailabilityServiceImplTest {
 
     @Test
     public void getAllTest() {
-        Room r1 = new Room(5,"Planning", 6);
-        Room r2 = new Room(4,"Planning", 3);
+        Room r1 = new Room(5,"Planning", 6, 0);
+        Room r2 = new Room(4,"Planning", 3, 0);
         Unavailability u1 = new Unavailability(1, "Java", LocalDate.parse("2018-08-16"), LocalDate.parse("2018-06-11"), 5);
         Unavailability u2 = new Unavailability(3, ".net", LocalDate.parse("2018-08-11"), LocalDate.parse("2018-06-04"), 4);
         List<Unavailability> unavailabilityList = new ArrayList<>();

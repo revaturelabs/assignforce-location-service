@@ -39,8 +39,8 @@ public class RoomServiceImplTest {
 
     @Test
     public void getAllTest() {
-        Room r1 = new Room(1, "Auditorium", 2);
-        Room r2 = new Room(5, "Basement", 3);
+        Room r1 = new Room(1, "Auditorium", 2, 0);
+        Room r2 = new Room(5, "Basement", 3, 0);
         List<Room> roomList = new ArrayList<>();
         roomList.add(r1);
         roomList.add(r2);
@@ -53,7 +53,7 @@ public class RoomServiceImplTest {
     public void findByIdTest() {
         String name = "Staging";
         int id = 4;
-        Room r = new Room(id, name, 2);
+        Room r = new Room(id, name, 2, 0);
         Optional<Room> op1 = Optional.ofNullable(r);
         Mockito.when(roomRepository.findById(id)).thenReturn(op1);
         Optional<Room> lTest = roomService.findById(id);
@@ -63,7 +63,7 @@ public class RoomServiceImplTest {
     @Test
     public void updateTest() {
         String change = "HR Office";
-        Room r = new Room(4, "HR", 1);
+        Room r = new Room(4, "HR", 1, 0);
         r.setRoomName(change);
         Mockito.when(roomRepository.save(r)).thenReturn(r);
         Room lTest = roomService.update(r);
@@ -73,7 +73,7 @@ public class RoomServiceImplTest {
     @Test
     public void createTest() {
         int id = 5;
-        Room r = new Room(id,"Planning", 6);
+        Room r = new Room(id,"Planning", 6, 0);
         Mockito.when(roomRepository.save(r)).thenReturn(r);
         Room lTest = roomService.create(r);
         assertEquals(id, lTest.getId());
