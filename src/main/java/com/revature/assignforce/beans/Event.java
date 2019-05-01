@@ -35,6 +35,9 @@ public class Event {
 	@Column(name = "CREATED_DATE")
 	@NotNull(message = "createdDate must not be null")
 	private LocalDate createdDate;
+	
+	@Column(name = "ROOM_ID")
+	private Integer roomID;
 
 	public Event() {
 		super();
@@ -43,13 +46,14 @@ public class Event {
 
 	public Event(int id, @NotNull(message = "endDate must not be null") LocalDate endDate,
 			@NotNull(message = "startDate must not be null") LocalDate startDate, String name,
-			@NotNull(message = "createdDate must not be null") LocalDate createdDate) {
+			@NotNull(message = "createdDate must not be null") LocalDate createdDate, Integer roomID) {
 		super();
 		this.id = id;
 		this.endDate = endDate;
 		this.startDate = startDate;
 		this.name = name;
 		this.createdDate = createdDate;
+		this.roomID = roomID;
 	}
 
 	public int getId() {
@@ -76,14 +80,6 @@ public class Event {
 		this.startDate = startDate;
 	}
 
-	public String getDescription() {
-		return name;
-	}
-
-	public void setDescription(String name) {
-		this.name = name;
-	}
-
 	public LocalDate getCreatedDate() {
 		return createdDate;
 	}
@@ -92,14 +88,31 @@ public class Event {
 		this.createdDate = createdDate;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer getRoomID() {
+		return roomID;
+	}
+
+	public void setRoomID(Integer roomID) {
+		this.roomID = roomID;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((createdDate == null) ? 0 : createdDate.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((endDate == null) ? 0 : endDate.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((roomID == null) ? 0 : roomID.hashCode());
 		result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
 		return result;
 	}
@@ -118,17 +131,22 @@ public class Event {
 				return false;
 		} else if (!createdDate.equals(other.createdDate))
 			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
 		if (endDate == null) {
 			if (other.endDate != null)
 				return false;
 		} else if (!endDate.equals(other.endDate))
 			return false;
 		if (id != other.id)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (roomID == null) {
+			if (other.roomID != null)
+				return false;
+		} else if (!roomID.equals(other.roomID))
 			return false;
 		if (startDate == null) {
 			if (other.startDate != null)
@@ -141,7 +159,7 @@ public class Event {
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", endDate=" + endDate + ", startDate=" + startDate + ", name=" + name
-				+ ", createdDate=" + createdDate + "]";
+				+ ", createdDate=" + createdDate + ", roomID=" + roomID + "]";
 	}
 	
 }
