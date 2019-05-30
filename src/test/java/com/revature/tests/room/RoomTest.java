@@ -3,7 +3,6 @@ package com.revature.tests.room;
 import static org.junit.Assert.*;
 
 import java.util.Set;
-import java.util.TreeSet;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -13,17 +12,12 @@ import javax.validation.ValidatorFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.revature.assignforce.beans.Room;
-import com.revature.assignforce.beans.Unavailability;
-import com.revature.assignforce.repos.LocationRepository;
-import com.revature.assignforce.service.LocationService;
-import com.revature.assignforce.service.LocationServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -63,8 +57,8 @@ public class RoomTest {
 	public void getSetNameTest() {
 		String name = "BlueRoom";
 		Room r = new Room();
-		r.setRoomName(name);
-		assertTrue(r.getRoomName().equals(name));
+		r.setName(name);
+		assertTrue(r.getName().equals(name));
 	}
 
 	@Test
@@ -83,14 +77,14 @@ public class RoomTest {
 	@Test
 	public void roomNameNotNull() {
 		Room r = new Room();
-		r.setRoomName(null);
+		r.setName(null);
 		
 	    Set<ConstraintViolation<Room>> constraintViolations =
 	      validator.validate(r);
 	 
 	    assertEquals(1, constraintViolations.size());
 	    assertEquals(
-	 	         "roomName must not be null",
+	 	         "name must not be null",
 	 	         constraintViolations.iterator().next().getMessage()
 	 	      );
 	}
@@ -106,7 +100,7 @@ public class RoomTest {
 	public void roomNameGreaterThanEmptyString() {
 		
 		Room r = new Room();
-		r.setRoomName("");
+		r.setName("");
 		
 		Set<ConstraintViolation<Room>> constraintViolations =
 			      validator.validate(r);
@@ -127,7 +121,7 @@ public class RoomTest {
 	@Test
 	public void roomNameSizeLessThan129() {
 		Room r = new Room();
-		r.setRoomName("1234567890123456789012345678901234567890"
+		r.setName("1234567890123456789012345678901234567890"
 				+ "1234567890123456789012345678901234567890" 
 				+ "1234567890123456789012345678901234567890" 
 				+ "123456789");
