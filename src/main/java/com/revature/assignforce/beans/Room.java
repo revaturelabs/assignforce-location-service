@@ -28,6 +28,11 @@ public class Room {
 	@NotNull(message = "name must not be null")
 	@Size(min = 1, max = 128, message = "RoomName size must be between 1 and 128")
 	private String name;
+	
+	@Column(name = "Room_Capacity")
+	@NotNull(message = "roomCapacity must not be null")
+	@Size(min = 25, message = "RoomCapacity size must be more than 25")
+	private int roomCapacity;
 
 //	@JsonIgnoreProperties
 //	@ManyToOne(targetEntity=Building.class,fetch=FetchType.LAZY)
@@ -47,6 +52,7 @@ public class Room {
 		super();
 		this.id = id;
 		this.name = name;
+		this.roomCapacity = roomCapacity;
 		//this.buildingObject = notbuilding;
 		this.building = building;
 	}
@@ -74,12 +80,17 @@ public class Room {
 		this.name = name;
 	}
 
-
-
 //	public void setNotbuilding(Building notbuilding) {
 //		this.buildingObject = notbuilding;
 //	}
 
+	public int getRoomCapacity() {
+		return roomCapacity;
+	}
+
+	public void setRoomCapacity(int roomCapacity) {
+		this.roomCapacity = roomCapacity;
+	}
 
 	public Integer getBuilding() {
 		return building;
