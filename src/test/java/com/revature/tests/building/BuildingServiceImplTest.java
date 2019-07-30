@@ -59,7 +59,7 @@ public class BuildingServiceImplTest {
         Optional<Building> op = Optional.ofNullable(b);
         Mockito.when(buildingRepository.findById(4)).thenReturn(op);
         Optional<Building> lTest = buildingService.findById(4);
-        assertTrue(lTest.get().getBuildingName().equals(name));
+        assertTrue(lTest.get().getName().equals(name));
     }
 
     @Test
@@ -77,7 +77,7 @@ public class BuildingServiceImplTest {
         Building b = new Building(id, true,"Business", 6);
         Mockito.when(buildingRepository.save(b)).thenReturn(b);
         Building lTest = buildingService.create(b);
-        assertTrue(lTest.getBuildingId() == id);
+        assertTrue(lTest.getId() == id);
     }
 
     @Test

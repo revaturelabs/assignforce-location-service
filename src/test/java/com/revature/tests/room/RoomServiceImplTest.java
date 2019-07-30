@@ -59,17 +59,17 @@ public class RoomServiceImplTest {
         Optional<Room> op1 = Optional.ofNullable(r);
         Mockito.when(roomRepository.findById(id)).thenReturn(op1);
         Optional<Room> lTest = roomService.findById(id);
-        assertEquals(name, lTest.get().getRoomName());
+        assertEquals(name, lTest.get().getName());
     }
 
     @Test
     public void updateTest() {
         String change = "HR Office";
-        Room r = new Room(4, "HR", 1, 0);
-        r.setRoomName(change);
+        Room r = new Room(4, "HR", 1);
+        r.setName(change);
         Mockito.when(roomRepository.save(r)).thenReturn(r);
         Room lTest = roomService.update(r);
-        assertEquals(change, lTest.getRoomName());
+        assertEquals(change, lTest.getName());
     }
 
     @Test
