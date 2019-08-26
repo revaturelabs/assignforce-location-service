@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @Entity
@@ -35,6 +36,7 @@ public class Room {
 	@NotNull(message = "roomCapacity must not be null")
 	@Max(value=25)
 	@Min(value=1)
+	@JsonProperty(value="capacity")
 	private int roomCapacity;
 
 //	@JsonIgnoreProperties
@@ -44,6 +46,9 @@ public class Room {
 
 	@Column(name="BUILDING_ID")
 	private Integer building;
+
+	@Column(name="ACTIVE")
+	private boolean active;
 
 
 	public Room() {
@@ -100,5 +105,13 @@ public class Room {
 
 	public void setBuilding(Integer building) {
 		this.building = building;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 }
