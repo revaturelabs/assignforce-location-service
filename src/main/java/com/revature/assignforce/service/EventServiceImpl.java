@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.revature.assignforce.beans.Event;
 import com.revature.assignforce.repos.EventRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class EventServiceImpl implements EventService {
 
 	@Autowired
