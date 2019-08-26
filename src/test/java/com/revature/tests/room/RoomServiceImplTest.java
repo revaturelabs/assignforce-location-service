@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -41,8 +42,8 @@ public class RoomServiceImplTest {
 
     @Test
     public void getAllTest() {
-        Room r1 = new Room(1, "Auditorium", 2, 0);
-        Room r2 = new Room(5, "Basement", 3, 0);
+        Room r1 = new Room();
+        Room r2 = new Room();
         List<Room> roomList = new ArrayList<>();
         roomList.add(r1);
         roomList.add(r2);
@@ -65,7 +66,7 @@ public class RoomServiceImplTest {
     @Test
     public void updateTest() {
         String change = "HR Office";
-        Room r = new Room(4, "HR", 1);
+        Room r = new Room(4, "HR", 1, 0);
         r.setName(change);
         Mockito.when(roomRepository.save(r)).thenReturn(r);
         Room lTest = roomService.update(r);
@@ -75,7 +76,7 @@ public class RoomServiceImplTest {
     @Test
     public void createTest() {
         int id = 5;
-        Room r = new Room(id,"Planning", 6, 0);
+        Room r = new Room(id, "Room", 3, 0);
         Mockito.when(roomRepository.save(r)).thenReturn(r);
         Room lTest = roomService.create(r);
         assertEquals(id, lTest.getId());

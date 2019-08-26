@@ -76,7 +76,7 @@ public class RoomTest {
 	
 	@Test
 	public void roomNameNotNull() {
-		Room r = new Room();
+		Room r = new Room(5, "Room 2", 2, 1);
 		r.setName(null);
 		
 	    Set<ConstraintViolation<Room>> constraintViolations =
@@ -99,7 +99,7 @@ public class RoomTest {
 	@Test
 	public void roomNameGreaterThanEmptyString() {
 		
-		Room r = new Room();
+		Room r = new Room(5, "Room 2", 2, 1);
 		r.setName("");
 		
 		Set<ConstraintViolation<Room>> constraintViolations =
@@ -120,7 +120,7 @@ public class RoomTest {
 	
 	@Test
 	public void roomNameSizeLessThan129() {
-		Room r = new Room();
+		Room r = new Room(5, "Room 2", 2, 1);
 		r.setName("1234567890123456789012345678901234567890"
 				+ "1234567890123456789012345678901234567890" 
 				+ "1234567890123456789012345678901234567890" 

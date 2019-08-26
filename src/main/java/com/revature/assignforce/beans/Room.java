@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -31,7 +33,8 @@ public class Room {
 	
 	@Column(name = "Room_Capacity")
 	@NotNull(message = "roomCapacity must not be null")
-	@Size(min = 25, message = "RoomCapacity size must be more than 25")
+	@Max(value=25)
+	@Min(value=1)
 	private int roomCapacity;
 
 //	@JsonIgnoreProperties
@@ -45,10 +48,9 @@ public class Room {
 
 	public Room() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Room(int id, String name, Integer building) {
+	public Room(int id, String name, int building, int roomCapacity) {
 		super();
 		this.id = id;
 		this.name = name;
