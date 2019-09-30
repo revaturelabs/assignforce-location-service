@@ -18,20 +18,42 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.assignforce.beans.Location;
 import com.revature.assignforce.service.LocationService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+/**
+ * 
+ * A controller for retrieving, creating, updating and deleting Location information
+ *
+ */
 @RestController
+@Api(value = "LocationController", 
+description = "REST APIs for retrieving, creating, updating and deleting Location information")
 public class LocationController {
 
 	@Autowired
 	LocationService locationService;
 
-	// findAll
+	/**
+	 * 
+	 * @return		A List of All Locations
+	 */
 	@GetMapping
+	@ApiOperation(value = "Get All Locations", response = List.class, tags = "getAllLocations")
 	public List<Location> getAll() {
 		return locationService.getAll();
 	}
 
-	// findOne
+	/**
+	 * 
+	 * @param 	id	A Location Id of object to be retrieved
+	 * @return		A Location ResponseEntity
+	 * @see		Location
+	 * @see		ResponseEntity
+	 */
 	@GetMapping(value = "{id}")
+	@ApiOperation(value = "Get Specific Location by Id", 
+	response = ResponseEntity.class, tags = "getLocation")
 	public ResponseEntity<Location> getById(@PathVariable("id") int id) {
 		Optional<Location> a = locationService.findById(id);
 		if (!a.isPresent())
@@ -39,8 +61,16 @@ public class LocationController {
 		return new ResponseEntity<>(a.get(), HttpStatus.OK);
 	}
 
-	// create
+	/**
+	 * 
+	 * @param 	a	A New Location object
+	 * @return		A Location ResponseEntity
+	 * @see		Location
+	 * @see		ResponseEntity
+	 */
 	@PostMapping
+	@ApiOperation(value = "Add a Location", 
+	response = ResponseEntity.class, tags = "addLocation")
 	public ResponseEntity<Location> add(@RequestBody Location a) {
 		a = locationService.create(a);
 		if (a == null)
@@ -48,8 +78,16 @@ public class LocationController {
 		return new ResponseEntity<>(a, HttpStatus.CREATED);
 	}
 
-	// update
+	/**
+	 * 
+	 * @param 	a	An Edited Location object
+	 * @return		A Location ResponseEntity
+	 * @see		Location
+	 * @see		ResponseEntity
+	 */
 	@PutMapping
+	@ApiOperation(value = "Update a Location", 
+	response = ResponseEntity.class, tags = "updateLocation")
 	public ResponseEntity<Location> update(@RequestBody Location a) {
 		a = locationService.update(a);
 		if (a == null)
@@ -57,8 +95,16 @@ public class LocationController {
 		return new ResponseEntity<>(a, HttpStatus.CREATED);
 	}
 
-	// delete
+	/**
+	 * 
+	 * @param 	id	A Location Id of object to be deleted
+	 * @return		A Location ResponseEntity
+	 * @see		Location
+	 * @see		ResponseEntity
+	 */
 	@DeleteMapping(value = "{id}")
+	@ApiOperation(value = "Delete a Location", 
+	response = ResponseEntity.class, tags = "deleteLocation")
 	public ResponseEntity<Location> delete(@PathVariable("id") int id) {
 		locationService.delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);
