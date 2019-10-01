@@ -21,23 +21,42 @@ import com.revature.assignforce.beans.Room;
 import com.revature.assignforce.service.BuildingService;
 import com.revature.assignforce.service.RoomService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+/**
+ * 
+ * A controller for retrieving, creating, updating and deleting Room information
+ *
+ */
 @RestController
 @RequestMapping("/room")
+@Api(value = "RoomController", 
+description = "REST APIs for retrieving, creating, updating and deleting Room information")
 public class RoomController {
 	
 	@Autowired
 	RoomService roomService;
 
-	// findAll
+	/**
+	 * 
+	 * @return		A List of All Rooms
+	 */
 	@GetMapping
+	@ApiOperation(value = "Get All Rooms", response = List.class, tags = "getAllRooms")
 	public List<Room> getAll() {
-		
-		
 		return roomService.getAll();
 	}
 
-	// findOne
+	/**
+	 * 
+	 * @param 	id	A Room Id of object to be retrieved
+	 * @return		A Room ResponseEntity
+	 * @see		Room
+	 * @see		ResponseEntity
+	 */
 	@GetMapping(value = "{id}")
+	@ApiOperation(value = "Get Specific Room By Id", response = ResponseEntity.class, tags = "getRoom")
 	public ResponseEntity<Room> getById(@PathVariable("id") int id) {
 		Optional<Room> a = roomService.findById(id);
 		if (!a.isPresent())
@@ -45,8 +64,15 @@ public class RoomController {
 		return new ResponseEntity<>(a.get(), HttpStatus.OK);
 	}
 
-	// create
+	/**
+	 * 
+	 * @param 	a	A New Room object
+	 * @return		A Room ResponseEntity
+	 * @see		Room
+	 * @see		ResponseEntity
+	 */
 	@PostMapping
+	@ApiOperation(value = "Add a Room", response = ResponseEntity.class, tags = "addRoom")
 	public ResponseEntity<Room> add(@RequestBody Room a) {
 		a = roomService.create(a);
 		if (a == null)
@@ -54,8 +80,15 @@ public class RoomController {
 		return new ResponseEntity<>(a, HttpStatus.CREATED);
 	}
 
-	// update
+	/**
+	 * 
+	 * @param 	a	An Edited Room object
+	 * @return		A Room ResponseEntity
+	 * @see		Room
+	 * @see		ResponseEntity
+	 */
 	@PutMapping("{id}")
+	@ApiOperation(value = "Update a Room", response = ResponseEntity.class, tags = "updateRoom")
 	public ResponseEntity<Room> update(@RequestBody Room a) {
 		a = roomService.update(a);
 		if (a == null)
@@ -63,8 +96,15 @@ public class RoomController {
 		return new ResponseEntity<>(a, HttpStatus.CREATED);
 	}
 
-	// delete
+	/**
+	 * 
+	 * @param 	id	A Room Id of object to be deleted
+	 * @return		A Room ResponseEntity
+	 * @see		Room
+	 * @see		ResponseEntity
+	 */
 	@DeleteMapping(value = "{id}")
+	@ApiOperation(value = "Delete a Room", response = ResponseEntity.class, tags = "deleteRoom")
 	public ResponseEntity<Room> delete(@PathVariable("id") int id) {
 		roomService.delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);
