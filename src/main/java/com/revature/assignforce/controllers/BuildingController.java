@@ -21,23 +21,44 @@ import com.revature.assignforce.beans.Location;
 import com.revature.assignforce.service.BuildingService;
 import com.revature.assignforce.service.LocationService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+
+
+/**
+ * 
+ * A controller for retrieving, creating, updating and deleting Building information
+ *
+ */
 @RestController
 @RequestMapping("/building")
+@Api(value = "BuildingController", 
+description = "REST APIs for retrieving, creating, updating and deleting Building information")
 public class BuildingController {
 	
 	@Autowired
 	BuildingService buildingService;
 
-	// findAll
+	/**
+	 * 
+	 * @return		A List of All Buildings
+	 */
 	@GetMapping
+	@ApiOperation(value = "Get All Buildings", response = List.class, tags = "getAllBuildings")
 	public List<Building> getAll() {
-		
-		
 		return buildingService.getAll();
 	}
 
-	// findOne
+	/**
+	 * 
+	 * @param 	id	A Building Id of object to be retrieved
+	 * @return		A Building ResponseEntity
+	 * @see		Building
+	 * @see		ResponseEntity
+	 */
 	@GetMapping(value = "{id}")
+	@ApiOperation(value = "Get Specific Building by Id", response = ResponseEntity.class, tags = "getById")
 	public ResponseEntity<Building> getById(@PathVariable("id") int id) {
 		Optional<Building> a = buildingService.findById(id);
 		if (!a.isPresent())
@@ -45,8 +66,15 @@ public class BuildingController {
 		return new ResponseEntity<>(a.get(), HttpStatus.OK);
 	}
 
-	// create
+	/**
+	 * 
+	 * @param 	a	A New Building object
+	 * @return		A Building ResponseEntity
+	 * @see		Building
+	 * @see		ResponseEntity
+	 */
 	@PostMapping
+	@ApiOperation(value = "Add a Building", response = ResponseEntity.class, tags = "add")
 	public ResponseEntity<Building> add(@RequestBody Building a) {
 		a = buildingService.create(a);
 		if (a == null)
@@ -54,8 +82,15 @@ public class BuildingController {
 		return new ResponseEntity<>(a, HttpStatus.CREATED);
 	}
 
-	// update
+	/**
+	 * 
+	 * @param 	a	An Edited Building object
+	 * @return		A Building ResponseEntity
+	 * @see		Building
+	 * @see		ResponseEntity
+	 */
 	@PutMapping
+	@ApiOperation(value = "Update Building information", response = ResponseEntity.class, tags = "update")
 	public ResponseEntity<Building> update(@RequestBody Building a) {
 		a = buildingService.update(a);
 		if (a == null)
@@ -63,8 +98,15 @@ public class BuildingController {
 		return new ResponseEntity<>(a, HttpStatus.CREATED);
 	}
 
-	// delete
+	/**
+	 * 
+	 * @param 	id	A Building Id of object to be deleted
+	 * @return		A Building ResponseEntity
+	 * @see		Building
+	 * @see		ResponseEntity
+	 */
 	@DeleteMapping(value = "{id}")
+	@ApiOperation(value = "Delete Building information", response = ResponseEntity.class, tags = "delete")
 	public ResponseEntity<Building> delete(@PathVariable("id") int id) {
 		buildingService.delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);
