@@ -35,7 +35,8 @@ public class LocationTest {
 		int id = 32;
 		Location l = new Location();
 		l.setId(id);
-		assertTrue(l.getId() == id);
+		//assertTrue(l.getId() == id);
+		assertEquals(id, l.getId());
 	}
 	
 	@Test

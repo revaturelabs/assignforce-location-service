@@ -20,10 +20,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.revature.assignforce.beans.Building;
+//import com.revature.assignforce.beans.Building;
 import com.revature.assignforce.beans.Location;
-import com.revature.assignforce.beans.Room;
-import com.revature.assignforce.beans.Unavailability;
+//import com.revature.assignforce.beans.Room;
+//import com.revature.assignforce.beans.Unavailability;
 import com.revature.assignforce.controllers.LocationController;
 import com.revature.assignforce.repos.LocationRepository;
 import com.revature.assignforce.service.LocationService;
@@ -65,7 +65,8 @@ public class LocationControllerTest {
 		locationList.add(l3);
 		Mockito.when(locationRepository.findAll()).thenReturn(locationList);
 		List<Location> testList = locationController.getAll();
-		assertTrue(testList.size() == 3);
+//		assertTrue(testList.size() == 3);
+		assertEquals(3,testList.size());
 	}
 	
 	@Test
@@ -75,13 +76,16 @@ public class LocationControllerTest {
 		Optional<Location> op = Optional.ofNullable(l);
 		Mockito.when(locationRepository.findById(id)).thenReturn(op);
 		ResponseEntity<Location> reTest = locationController.getById(id);
-		assertTrue(reTest.getBody().getId() == id && reTest.getStatusCode() == HttpStatus.OK);
+//		assertTrue(reTest.getBody().getId() == id && reTest.getStatusCode() == HttpStatus.OK);
+		assertEquals(id, reTest.getBody().getId());
+		assertEquals(HttpStatus.OK, reTest.getStatusCode());
 	}
 	
 	@Test
 	public void getByIdTestNotFound() {
 		ResponseEntity<Location> reTest = locationController.getById(7);
-		assertTrue(reTest.getStatusCode() == HttpStatus.NOT_FOUND);
+//		assertTrue(reTest.getStatusCode() == HttpStatus.NOT_FOUND);
+		assertEquals(HttpStatus.NOT_FOUND, reTest.getStatusCode());
 	}
 	
 	@Test
@@ -90,14 +94,17 @@ public class LocationControllerTest {
 		Location l = new Location(id, "San Diego", "San Diego", "CA", true);
 		Mockito.when(locationRepository.save(l)).thenReturn(l);
 		ResponseEntity<Location> reTest = locationController.add(l);
-		assertTrue(reTest.getBody().getId() == id && reTest.getStatusCode() == HttpStatus.CREATED);
+//		assertTrue(reTest.getBody().getId() == id && reTest.getStatusCode() == HttpStatus.CREATED);
+		assertEquals(id,reTest.getBody().getId());
+		assertEquals(HttpStatus.CREATED,reTest.getStatusCode());
 	}
 	
 	@Test
 	public void addTestBadRequest() {
 		Location l = new Location(13, "Scranton", "Scranton", "PA", false);
 		ResponseEntity<Location> reTest = locationController.add(l);
-		assertTrue(reTest.getStatusCode() == HttpStatus.BAD_REQUEST);
+//		assertTrue(reTest.getStatusCode() == HttpStatus.BAD_REQUEST);
+		assertEquals(HttpStatus.BAD_REQUEST,reTest.getStatusCode());
 	}
 	
 	@Test
@@ -109,7 +116,10 @@ public class LocationControllerTest {
 		l.setState(state);
 		Mockito.when(locationRepository.save(l)).thenReturn(l);
 		ResponseEntity<Location> reTest = locationController.update(l);
-		assertTrue(reTest.getBody().getState().equals(state) && reTest.getStatusCode() == HttpStatus.CREATED);
+//		assertTrue(reTest.getBody().getState().equals(state) && reTest.getStatusCode() == HttpStatus.CREATED);
+//		assertEquals(HttpStatus.CREATED, reTest.getBody().getState().equals(state) && reTest.getStatusCode());
+		assertEquals(true,reTest.getBody().getState().equals(state));
+		assertEquals(HttpStatus.CREATED,reTest.getStatusCode());
 	}
 	
 	@Test
@@ -119,14 +129,17 @@ public class LocationControllerTest {
 		l.setName("Phoenix");
 		l.setState("AZ");
 		ResponseEntity<Location> reTest = locationController.update(l);
-		assertTrue(reTest.getStatusCode() == HttpStatus.BAD_REQUEST);
+//		assertTrue(reTest.getStatusCode() == HttpStatus.BAD_REQUEST);
+		assertEquals(HttpStatus.BAD_REQUEST,reTest.getStatusCode());
+		
 	}
 	
 	@Test
 	public void deleteTest() {
 		Mockito.doNothing().when(locationRepository).deleteById(25);
 		ResponseEntity<Location> reTest = locationController.delete(25);
-		assertTrue(reTest.getStatusCode() == HttpStatus.OK);
+//		assertTrue(reTest.getStatusCode() ==HttpStatus.OK HttpStatus.OK);
+		assertEquals(HttpStatus.OK, reTest.getStatusCode());
 	}
 
 }

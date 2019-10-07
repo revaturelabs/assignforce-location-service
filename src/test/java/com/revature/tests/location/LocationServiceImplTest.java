@@ -56,7 +56,8 @@ public class LocationServiceImplTest {
 		locationList.add(l2);
 		Mockito.when(locationRepository.findAll()).thenReturn(locationList);
 		List<Location> testList = locationService.getAll();
-		assertTrue(testList.size() == 2);
+		//assertTrue(testList.size() == 2);
+		assertEquals(2, testList.size());
 	}
 	
 	@Test
@@ -84,7 +85,8 @@ public class LocationServiceImplTest {
 		Location l = new Location(id, "New York", "New York", "NY", true);
 		Mockito.when(locationRepository.save(l)).thenReturn(l);
 		Location lTest = locationService.create(l);
-		assertTrue(lTest.getId() == id);
+//		assertTrue(lTest.getId() == id);
+		assertEquals(id, lTest.getId());
 	}
 	
 	@Test

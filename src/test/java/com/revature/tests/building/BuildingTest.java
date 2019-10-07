@@ -56,7 +56,8 @@ public class BuildingTest {
 		int id = 96;
 		Building b = new Building();
 		b.setId(id);
-		assertTrue(b.getId() == id);
+		//assertTrue(b.getId() == id);
+		assertEquals(id, b.getId());
 	}
 	
 	@Test
@@ -79,7 +80,8 @@ public class BuildingTest {
 		int add = 5;
 		Building b = new Building();
 		b.setAddress(add);
-		assertTrue(b.getAddress() == add);
+		//assertTrue(b.getAddress() == add);
+		assertEquals((Integer) add, b.getAddress());
 	}
 
 //	@Test

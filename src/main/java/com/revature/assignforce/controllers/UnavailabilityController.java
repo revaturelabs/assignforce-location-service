@@ -29,7 +29,7 @@ public class UnavailabilityController {
 	@Autowired
 	UnavailabilityService unavailabilityService;
 	@Autowired
-	RoomService roomService;
+//	RoomService roomService;
 
 	// findAll
 	@GetMapping
