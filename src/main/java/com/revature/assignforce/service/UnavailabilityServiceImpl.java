@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.revature.assignforce.beans.Room;
@@ -12,6 +13,11 @@ import com.revature.assignforce.beans.Unavailability;
 import com.revature.assignforce.repos.UnavailabilityRepository;
 
 @Service
+/*
+ * Only a user with an SVP role should have access
+ * to these methods.
+ */
+//@PreAuthorize("hasRole('SVP')")
 public class UnavailabilityServiceImpl  implements UnavailabilityService {
 
 	
