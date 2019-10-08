@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.revature.assignforce.beans.Building;
@@ -12,6 +13,12 @@ import com.revature.assignforce.repos.BuildingRepository;
 import com.revature.assignforce.repos.LocationRepository;
 
 @Service
+/*
+ * the user should have the role of SVP in order to access
+ * these methods.
+ */
+//@PreAuthorize("hasRole('SVP')")
+
 public class BuildingServiceImpl implements BuildingService {
 
 	

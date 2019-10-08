@@ -4,12 +4,19 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.revature.assignforce.beans.Location;
 import com.revature.assignforce.repos.LocationRepository;
 
 @Service
+
+/*
+ * Only a user with an SVP role should be able to 
+ * access these methods.
+ */
+//@PreAuthorize("hasRole('SVP')")
 public class LocationServiceImpl implements LocationService {
 
 	@Autowired
