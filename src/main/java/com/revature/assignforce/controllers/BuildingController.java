@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.assignforce.beans.Building;
@@ -21,8 +22,7 @@ import com.revature.assignforce.beans.Location;
 import com.revature.assignforce.service.BuildingService;
 import com.revature.assignforce.service.LocationService;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 
 
 
@@ -33,8 +33,7 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @RequestMapping("/building")
-@Api(value = "BuildingController", 
-description = "REST APIs for retrieving, creating, updating and deleting Building information")
+@Api(value = "BuildingController")
 public class BuildingController {
 	
 	@Autowired
@@ -45,7 +44,9 @@ public class BuildingController {
 	 * @return		A List of All Buildings
 	 */
 	@GetMapping
-	@ApiOperation(value = "Get All Buildings", response = List.class, tags = "getAllBuildings")
+	@ApiOperation(value = "Get All Buildings", 
+	response = Building.class, responseContainer="List", 
+	tags = "BuildingController", nickname= "getAllBuildings")
 	public List<Building> getAll() {
 		return buildingService.getAll();
 	}
@@ -55,10 +56,14 @@ public class BuildingController {
 	 * @param 	id	A Building Id of object to be retrieved
 	 * @return		A Building ResponseEntity
 	 * @see		Building
-	 * @see		ResponseEntity
 	 */
 	@GetMapping(value = "{id}")
-	@ApiOperation(value = "Get Specific Building by Id", response = ResponseEntity.class, tags = "getById")
+	@ApiOperation(value = "Get Specific Building by Id", 
+	response = ResponseEntity.class,
+	tags = "BuildingController", nickname= "getBuildingById")
+	@ApiResponses(value = {
+			@ApiResponse(code = 404, message = "Not Found"), 
+            @ApiResponse(code = 200, message = "OK", response = Building.class)}) 
 	public ResponseEntity<Building> getById(@PathVariable("id") int id) {
 		Optional<Building> a = buildingService.findById(id);
 		if (!a.isPresent())
@@ -70,11 +75,15 @@ public class BuildingController {
 	 * 
 	 * @param 	a	A New Building object
 	 * @return		A Building ResponseEntity
-	 * @see		Building
-	 * @see		ResponseEntity
+	 * @see		Building	
 	 */
 	@PostMapping
-	@ApiOperation(value = "Add a Building", response = ResponseEntity.class, tags = "add")
+	@ApiOperation(value = "Add a Building", 
+	response = ResponseEntity.class,
+	nickname= "addBuilding")
+	@ApiResponses(value = {
+			@ApiResponse(code = 400, message = "Bad Request"), 
+            @ApiResponse(code = 201, message = "Created", response = Building.class)})
 	public ResponseEntity<Building> add(@RequestBody Building a) {
 		a = buildingService.create(a);
 		if (a == null)
@@ -87,10 +96,14 @@ public class BuildingController {
 	 * @param 	a	An Edited Building object
 	 * @return		A Building ResponseEntity
 	 * @see		Building
-	 * @see		ResponseEntity
 	 */
 	@PutMapping
-	@ApiOperation(value = "Update Building information", response = ResponseEntity.class, tags = "update")
+	@ApiOperation(value = "Update Building information",  
+	response = ResponseEntity.class,
+	tags = "BuildingController", nickname= "updateBuilding")
+	@ApiResponses(value = {
+			@ApiResponse(code = 400, message = "Bad Request"), 
+            @ApiResponse(code = 201, message = "Created", response = Building.class)}) 
 	public ResponseEntity<Building> update(@RequestBody Building a) {
 		a = buildingService.update(a);
 		if (a == null)
@@ -102,11 +115,12 @@ public class BuildingController {
 	 * 
 	 * @param 	id	A Building Id of object to be deleted
 	 * @return		A Building ResponseEntity
-	 * @see		Building
-	 * @see		ResponseEntity
+	 * @see		Building	
 	 */
 	@DeleteMapping(value = "{id}")
-	@ApiOperation(value = "Delete Building information", response = ResponseEntity.class, tags = "delete")
+	@ApiOperation(value = "Delete Building information",
+	tags = "BuildingController", nickname= "deleteBuilding")
+	@ApiResponse(code = 200, message = "OK", response = Building.class)
 	public ResponseEntity<Building> delete(@PathVariable("id") int id) {
 		buildingService.delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);

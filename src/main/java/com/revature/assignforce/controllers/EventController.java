@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.assignforce.beans.Building;
 import com.revature.assignforce.beans.Event;
 import com.revature.assignforce.service.EventService;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 
 /**
  * 
@@ -29,8 +29,7 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @RequestMapping("/event")
-@Api(value = "BuildingController", 
-description = "REST APIs for retrieving, creating, updating and deleting Event information")
+@Api(value = "EventController")
 public class EventController {
 
 	@Autowired
@@ -41,7 +40,9 @@ public class EventController {
 	 * @return		A List of All Events
 	 */
 	@GetMapping
-	@ApiOperation(value = "Get All Events", response = List.class, tags = "getAllEvents")
+	@ApiOperation(value = "Get All Events", 
+	response = Event.class, responseContainer="List", 
+	tags = "EventController", nickname="getAllEvents")
 	public List<Event> getAll() {
 		return eventService.getAll();
 	}
@@ -51,11 +52,16 @@ public class EventController {
 	 * @param 	id	An Event Id of object to be retrieved
 	 * @return		An Event ResponseEntity
 	 * @see		Event
-	 * @see		ResponseEntity
+	 *
 	 */
 	@GetMapping(value = "{id}")
-	@ApiOperation(value = "Get Specific Event by Id", response = ResponseEntity.class, tags = "getEvent")
-	public ResponseEntity<Event> getById(@PathVariable("id") int id) {
+	@ApiOperation(value = "Get Specific Event by Id", 
+	response = ResponseEntity.class, 
+	tags = "EventController", nickname="getEventById")
+	@ApiResponses(value = {
+			@ApiResponse(code = 404, message = "Not Found"), 
+            @ApiResponse(code = 200, message = "OK", response = Event.class)}) 
+	public ResponseEntity<Event> getById(@ApiParam(name = "id") @PathVariable("id") int id) {
 		Optional<Event> e = eventService.findById(id);
 		if (e == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -68,10 +74,15 @@ public class EventController {
 	 * @param	 e	A New Event object
 	 * @return		An Event ResponseEntity
 	 * @see		Event
-	 * @see		ResponseEntity
+	 *
 	 */
 	@PostMapping
-	@ApiOperation(value = "Create an Event", response = ResponseEntity.class, tags = "addEvent")
+	@ApiOperation(value = "Create an Event", 
+	response = ResponseEntity.class, 
+	tags = "EventController", nickname= "addEvent")
+	@ApiResponses(value = {
+			@ApiResponse(code = 400, message = "Bad Request"), 
+            @ApiResponse(code = 201, message = "Created", response = Event.class)}) 
 	public ResponseEntity<Event> add(@RequestBody Event e) {
 		e = eventService.create(e);
 		if (e == null) {
@@ -85,10 +96,15 @@ public class EventController {
 	 * @param 	e	An Edited Event object
 	 * @return		An Event ResponseEntity
 	 * @see		Event
-	 * @see		ResponseEntity
+	 *
 	 */
-	@PutMapping("{id}")
-	@ApiOperation(value = "Update an Event", response = ResponseEntity.class, tags = "updateEvent")
+	//@PutMapping(value = "{id}")
+	@ApiOperation(value = "Update an Event", 
+	response = ResponseEntity.class, 
+	tags = "EventController", nickname= "updateEvent")
+	@ApiResponses(value = {
+			@ApiResponse(code = 400, message = "Bad Request"), 
+            @ApiResponse(code = 201, message = "Created", response = Event.class)}) 
 	public ResponseEntity<Event> update(@RequestBody Event e) {
 		e = eventService.update(e);
 		if (e == null) {
@@ -102,11 +118,12 @@ public class EventController {
 	 * @param 	id	An Event Id of object to be deleted
 	 * @return		An Event ResponseEntity
 	 * @see		Event
-	 * @see		ResponseEntity
+	 *
 	 */
 	@DeleteMapping(value = "{id}")
-	@ApiOperation(value = "Delete an Event information", 
-	response = ResponseEntity.class, tags = "deleteEvent")
+	@ApiOperation(value = "Delete an Event information",
+	tags = "EventController", nickname= "deleteEvent")
+	@ApiResponse(code = 200, message = "OK", response = Event.class)
 	public ResponseEntity<Event> delete(@PathVariable("id") int id) {
 		eventService.delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);

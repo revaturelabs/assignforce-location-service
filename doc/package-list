@@ -1,0 +1,13 @@
+com.revature.assignforce
+com.revature.assignforce.beans
+com.revature.assignforce.config
+com.revature.assignforce.controllers
+com.revature.assignforce.repos
+com.revature.assignforce.service
+com.revature.assignforce.validators
+com.revature.tests.building
+com.revature.tests.event
+com.revature.tests.location
+com.revature.tests.room
+com.revature.tests.unavailability
+com.revature.tests.validators
