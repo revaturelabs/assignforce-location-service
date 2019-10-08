@@ -33,7 +33,8 @@ public class UnavailabilityTest {
         int id = 1;
         Unavailability u = new Unavailability();
         u.setId(id);
-        assertTrue(u.getId() == id);
+        //assertTrue(u.getId() == id);
+        assertEquals(id, u.getId());
     }
 
     @Test
@@ -65,6 +66,7 @@ public class UnavailabilityTest {
         int room = 1402;
         Unavailability u = new Unavailability();
         u.setRoom(room);
-        assertTrue(u.getRoom() == room);
+        //assertTrue(u.getRoom() == room);
+        assertEquals((Integer)room, u.getRoom());
     }
 }

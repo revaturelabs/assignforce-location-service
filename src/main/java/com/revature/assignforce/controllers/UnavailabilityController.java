@@ -38,7 +38,7 @@ public class UnavailabilityController {
 	UnavailabilityService unavailabilityService;
 	
 	@Autowired
-	RoomService roomService;
+//	RoomService roomService;
 
 	/**
 	 * 

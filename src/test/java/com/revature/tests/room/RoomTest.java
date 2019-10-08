@@ -50,7 +50,8 @@ public class RoomTest {
 		int id = 59;
 		Room r = new Room();
 		r.setId(id);
-		assertTrue(r.getId() == id);
+		//assertTrue(r.getId() == id);
+		assertEquals(id, r.getId());
 	}
 	
 	@Test
@@ -60,13 +61,31 @@ public class RoomTest {
 		r.setName(name);
 		assertTrue(r.getName().equals(name));
 	}
+	
+	@Test
+	public void getSetRoomCapacity() {
+		int rc = 30;
+		Room r = new Room();
+		r.setRoomCapacity(rc);
+		assertEquals(30, r.getRoomCapacity());
+	}
+	
+	@Test
+	public void getisActive() {
+		boolean b = true;
+		Room r = new Room();
+		r.setActive(b);
+		assertEquals(true,r.isActive());
+	}
 
 	@Test
 	public void getSetBuildingTest() {
 		int bld = 5;
+		Integer i = 5;
 		Room b = new Room();
 		b.setBuilding(bld);
-		assertTrue(b.getBuilding() == bld);
+		//assertTrue(b.getBuilding() == bld);
+		assertEquals(i, b.getBuilding());
 	}
 
 	/**

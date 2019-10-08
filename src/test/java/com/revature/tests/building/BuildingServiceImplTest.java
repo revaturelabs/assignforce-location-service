@@ -49,7 +49,8 @@ public class BuildingServiceImplTest {
         buildingList.add(b2);
         Mockito.when(buildingRepository.findAll()).thenReturn(buildingList);
         List<Building> testList = buildingService.getAll();
-        assertTrue(testList.size() == 2);
+        //assertTrue(testList.size() == 2);
+        assertEquals(2, testList.size());
     }
 
     @Test
@@ -77,7 +78,8 @@ public class BuildingServiceImplTest {
         Building b = new Building(id, true,"Business", 6);
         Mockito.when(buildingRepository.save(b)).thenReturn(b);
         Building lTest = buildingService.create(b);
-        assertTrue(lTest.getId() == id);
+//        assertTrue(lTest.getId() == id);
+        assertEquals(id,lTest.getId());
     }
 
     @Test

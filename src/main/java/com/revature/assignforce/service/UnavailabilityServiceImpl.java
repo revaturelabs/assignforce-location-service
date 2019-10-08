@@ -18,10 +18,6 @@ public class UnavailabilityServiceImpl  implements UnavailabilityService {
 	@Autowired
 	private UnavailabilityRepository unavailabilityRepository;
 	
-	@Autowired
-	private RoomService roomService;
-
-
 	@Override
 	public List<Unavailability> getAll() {
 		return unavailabilityRepository.findAll();
