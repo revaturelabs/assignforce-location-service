@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +35,7 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/room")
 @Api(value = "RoomController", 
 description = "REST APIs for retrieving, creating, updating and deleting Room information")
+
 public class RoomController {
 	
 	@Autowired
@@ -44,6 +47,7 @@ public class RoomController {
 	 */
 	@GetMapping
 	@ApiOperation(value = "Get All Rooms", response = List.class, tags = "getAllRooms")
+	@PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology','Trainer','Manager of Technology','Center Head')")
 	public List<Room> getAll() {
 		return roomService.getAll();
 	}
@@ -57,6 +61,7 @@ public class RoomController {
 	 */
 	@GetMapping(value = "{id}")
 	@ApiOperation(value = "Get Specific Room By Id", response = ResponseEntity.class, tags = "getRoom")
+	@PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology','Trainer','Manager of Technology','Center Head')")
 	public ResponseEntity<Room> getById(@PathVariable("id") int id) {
 		Optional<Room> a = roomService.findById(id);
 		if (!a.isPresent())
@@ -73,6 +78,7 @@ public class RoomController {
 	 */
 	@PostMapping
 	@ApiOperation(value = "Add a Room", response = ResponseEntity.class, tags = "addRoom")
+	@PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology','Manager of Technology','Center Head')")
 	public ResponseEntity<Room> add(@RequestBody Room a) {
 		a = roomService.create(a);
 		if (a == null)
@@ -89,6 +95,7 @@ public class RoomController {
 	 */
 	@PutMapping("{id}")
 	@ApiOperation(value = "Update a Room", response = ResponseEntity.class, tags = "updateRoom")
+	@PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology','Manager of Technology','Center Head')")
 	public ResponseEntity<Room> update(@RequestBody Room a) {
 		a = roomService.update(a);
 		if (a == null)
@@ -105,6 +112,7 @@ public class RoomController {
 	 */
 	@DeleteMapping(value = "{id}")
 	@ApiOperation(value = "Delete a Room", response = ResponseEntity.class, tags = "deleteRoom")
+	@PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology','Manager of Technology','Center Head')")
 	public ResponseEntity<Room> delete(@PathVariable("id") int id) {
 		roomService.delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);

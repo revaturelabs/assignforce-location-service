@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,10 +37,15 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/building")
 @Api(value = "BuildingController", 
 description = "REST APIs for retrieving, creating, updating and deleting Building information")
+
 public class BuildingController {
-	
+
+	private BuildingService buildingService;
+
 	@Autowired
-	BuildingService buildingService;
+	public BuildingController(BuildingService buildingService) {
+		this.buildingService = buildingService;
+	}
 
 	/**
 	 * 
@@ -46,6 +53,7 @@ public class BuildingController {
 	 */
 	@GetMapping
 	@ApiOperation(value = "Get All Buildings", response = List.class, tags = "getAllBuildings")
+	@PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology','Trainer','Manager of Technology','Center Head')")//Changed from @seured to this
 	public List<Building> getAll() {
 		return buildingService.getAll();
 	}
@@ -59,6 +67,7 @@ public class BuildingController {
 	 */
 	@GetMapping(value = "{id}")
 	@ApiOperation(value = "Get Specific Building by Id", response = ResponseEntity.class, tags = "getById")
+	@PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology','Trainer','Manager of Technology','Center Head')")
 	public ResponseEntity<Building> getById(@PathVariable("id") int id) {
 		Optional<Building> a = buildingService.findById(id);
 		if (!a.isPresent())
@@ -75,6 +84,7 @@ public class BuildingController {
 	 */
 	@PostMapping
 	@ApiOperation(value = "Add a Building", response = ResponseEntity.class, tags = "add")
+	@PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology', 'Manager of Technology')")
 	public ResponseEntity<Building> add(@RequestBody Building a) {
 		a = buildingService.create(a);
 		if (a == null)
@@ -91,6 +101,7 @@ public class BuildingController {
 	 */
 	@PutMapping
 	@ApiOperation(value = "Update Building information", response = ResponseEntity.class, tags = "update")
+	@PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology', 'Manager of Technology')")
 	public ResponseEntity<Building> update(@RequestBody Building a) {
 		a = buildingService.update(a);
 		if (a == null)
@@ -107,6 +118,7 @@ public class BuildingController {
 	 */
 	@DeleteMapping(value = "{id}")
 	@ApiOperation(value = "Delete Building information", response = ResponseEntity.class, tags = "delete")
+	@PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology', 'Manager of Technology')")
 	public ResponseEntity<Building> delete(@PathVariable("id") int id) {
 		buildingService.delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);

@@ -1,6 +1,7 @@
 package com.revature.tests.building;
 
 import com.revature.assignforce.beans.Building;
+import com.revature.assignforce.controllers.BuildingController;
 import com.revature.assignforce.repos.BuildingRepository;
 import com.revature.assignforce.service.BuildingService;
 import com.revature.assignforce.service.BuildingServiceImpl;
@@ -8,10 +9,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +25,8 @@ import java.util.Optional;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest
+@ContextConfiguration(classes = {BuildingController.class})
+@WebMvcTest(BuildingController.class)
 public class BuildingServiceImplTest {
 
     @Configuration

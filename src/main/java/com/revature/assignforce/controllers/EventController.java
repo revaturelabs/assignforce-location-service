@@ -7,6 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,6 +44,7 @@ public class EventController {
 	 */
 	@GetMapping
 	@ApiOperation(value = "Get All Events", response = List.class, tags = "getAllEvents")
+	@PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology','Trainer','Manager of Technology','Center Head')")
 	public List<Event> getAll() {
 		return eventService.getAll();
 	}
@@ -55,6 +58,7 @@ public class EventController {
 	 */
 	@GetMapping(value = "{id}")
 	@ApiOperation(value = "Get Specific Event by Id", response = ResponseEntity.class, tags = "getEvent")
+	@PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology','Trainer','Manager of Technology','Center Head')")
 	public ResponseEntity<Event> getById(@PathVariable("id") int id) {
 		Optional<Event> e = eventService.findById(id);
 		if (e == null) {
@@ -72,6 +76,7 @@ public class EventController {
 	 */
 	@PostMapping
 	@ApiOperation(value = "Create an Event", response = ResponseEntity.class, tags = "addEvent")
+    @PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology', 'Manager of Technology')")
 	public ResponseEntity<Event> add(@RequestBody Event e) {
 		e = eventService.create(e);
 		if (e == null) {
@@ -89,6 +94,7 @@ public class EventController {
 	 */
 	@PutMapping("{id}")
 	@ApiOperation(value = "Update an Event", response = ResponseEntity.class, tags = "updateEvent")
+    @PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology', 'Manager of Technology')")
 	public ResponseEntity<Event> update(@RequestBody Event e) {
 		e = eventService.update(e);
 		if (e == null) {
@@ -107,6 +113,7 @@ public class EventController {
 	@DeleteMapping(value = "{id}")
 	@ApiOperation(value = "Delete an Event information", 
 	response = ResponseEntity.class, tags = "deleteEvent")
+    @PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology', 'Manager of Technology')")
 	public ResponseEntity<Event> delete(@PathVariable("id") int id) {
 		eventService.delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);

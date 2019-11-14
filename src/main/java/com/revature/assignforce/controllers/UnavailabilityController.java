@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,6 +49,7 @@ public class UnavailabilityController {
 	@GetMapping
 	@ApiOperation(value = "Get All Unavailable Rooms", 
 	response = List.class, tags = "getAllUnavailableRooms")
+	@PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology','Trainer','Manager of Technology','Center Head')")
 	public List<Unavailability> getAll() {
 		return unavailabilityService.getAll();
 	}
@@ -62,6 +65,7 @@ public class UnavailabilityController {
 	@GetMapping(value = "{id}")
 	@ApiOperation(value = "Get an Unavailable Room By Id", 
 	response = ResponseEntity.class, tags = "getUnavailableRoom")
+	@PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology','Trainer','Manager of Technology','Center Head')")
 	public ResponseEntity<Unavailability> getById(@PathVariable("id") int id) {
 		
 		
@@ -87,6 +91,7 @@ public class UnavailabilityController {
 	 */
 	@PostMapping
 	@ApiOperation(value = "Add Unavailability to Room", response = ResponseEntity.class, tags = "addUnavailabilityToRoom")
+	@PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology','Trainer','Manager of Technology','Center Head')")
 	public ResponseEntity<Unavailability> add(@RequestBody Unavailability a) {
 		a = unavailabilityService.addUnavailability(a);
 		if (a == null)
@@ -104,6 +109,7 @@ public class UnavailabilityController {
 	 */
 	@PutMapping(value = "{uaId}")
 	@ApiOperation(value = "Update Unavailability of Room", response = ResponseEntity.class, tags = "updateUnavailabilityOfRoom")
+	@PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology','Trainer','Manager of Technology','Center Head')")
 	public ResponseEntity<Unavailability> update(@PathVariable("uaId") int uaId, @RequestBody Unavailability a) {
 		a = unavailabilityService.update(a);
 		if (a == null)
@@ -119,6 +125,7 @@ public class UnavailabilityController {
 	 * @see		ResponseEntity
 	 */
 	@DeleteMapping(value = "{id}")
+	@PreAuthorize("isAuthenticated() and hasAnyRole('SVP of Technology','Trainer','Manager of Technology','Center Head')")
 	public ResponseEntity<Unavailability> delete(@PathVariable("id") int id) {
 		unavailabilityService.delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);
